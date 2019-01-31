@@ -1,0 +1,128 @@
+POST http://localhost:3000/login/customer
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC"}
+
+<> 2019-01-24T122218.200.json
+
+###
+
+POST http://localhost:3000/login/customer
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC"}
+
+<> 2019-01-24T122153.200.json
+
+###
+
+POST http://localhost:3000/register/customer
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC", "name": "customer"}
+
+<> 2019-01-24T122109.200.json
+
+###
+
+POST http://localhost:3000/register/customer
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC", "name": "customer"}
+
+###
+
+POST http://localhost:3000/register/customer
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC", "name": "customer"}
+
+###
+
+POST http://localhost:3000/register/customer
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC"， "name": "customer"}
+
+<> 2019-01-24T121959.400.html
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
+
+<> 2019-01-24T103539.400.html
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
+
+<> 2019-01-24T103423.400.html
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
+
+<> 2019-01-24T102918.400.html
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
+
+<> 2019-01-24T102907.400.html
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
+
+<> 2019-01-24T102713.400.html
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
+
+<> 2019-01-24T101459.400.html
+
+###
+
