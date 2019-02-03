@@ -1,0 +1,13 @@
+{
+  "message": "Seller Sign Up Successfully!",
+  "data": {
+    "active": false,
+    "_id": "5c561b88ed585236ac307db1",
+    "username": "overseasshopping@foxmail.com",
+    "password": "$2a$10$OTbC4YM5vT.7mVEfVopZbOZN5rhI4fs8moFVqDrFhX7MuWZDlTmoW",
+    "name": "tests",
+    "register_date": "2019-02-02T22:36:56.854Z",
+    "active_code": "d7f8422b589f48940b16166cd5e5dbc5d4a818fa5d9e972f8017d1724479678e",
+    "__v": 0
+  }
+}

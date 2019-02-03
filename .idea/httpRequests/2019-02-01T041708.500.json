@@ -1,0 +1,19 @@
+<h1>req.cookie is not a function</h1>
+<h2></h2>
+<pre>TypeError: req.cookie is not a function
+at router.signout (C: \overseasshoppingwebsite\shoppingweb\routes\admin.js: 98:21)
+at Layer.handle [as handle_request] (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\layer.js: 95: 5)
+at next (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\route.js: 137: 13)
+at Route.dispatch (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\route.js: 112: 3)
+at Layer.handle [as handle_request] (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\layer.js: 95: 5)
+at C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js: 281:22
+at Function.process_params (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js:335: 12)
+at next (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js: 275: 10)
+at C: \overseasshoppingwebsite\shoppingweb\app.js: 59: 9
+at Layer.handle [as handle_request] (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\layer.js: 95: 5)
+at trim_prefix (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js: 317: 13)
+at C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js:284: 7
+at param (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js: 354: 14)
+at param (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js: 365: 14)
+at Function.process_params (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js: 410: 3)
+at next (C: \overseasshoppingwebsite\shoppingweb\node_modules\express\lib\router\index.js: 275:10)</pre>

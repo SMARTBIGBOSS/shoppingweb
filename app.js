@@ -41,14 +41,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(cookiekey.COOKIE_SECRET));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
-    credentials: true
+    credentials: true,
+    origin: 'http://localhost:8080'
 }))
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use("*", function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
     res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With, token");
     res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
     res.header("Access-Control-Expose-Headers", "token");
@@ -62,14 +63,17 @@ app.use("*", function (req, res, next) {
 // admin APIs
 app.post('/register/admin', admin.signUp);
 app.post('/login/admin', admin.signIn);
+app.post('/logout/admin', admin.signout);
 
 // seller APIs
 app.post('/register/seller', seller.signUp);
 app.post('/login/seller', seller.signIn);
+app.get('/active/seller', seller.active);
 
 // customer APIs
 app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);
+app.get('/active/customer', customer.active);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

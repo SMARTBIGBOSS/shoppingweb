@@ -3,19 +3,29 @@ let bcrypt = require('bcrypt-nodejs');
 let express = require('express');
 let router = express.Router();
 let jwt = require('jsonwebtoken');
-let JWT_SECRET = require('../configuration/secertkey_config');
+let SECRET = require('../configuration/secertkey_config');
 let mailer = require('../middleware/mailer')
+let crypto = require('crypto')
+
+encryptCode = (username) => {
+    let hmac = crypto.createHash('sha256', SECRET.ACTIVE_CODE);
+    hmac.update(username);
+    let code = hmac.digest('hex');
+    return code;
+};
 
 router.signUp = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     let checkEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+    let code = encryptCode(req.body.username);
     let seller = new Seller();
     seller.username = req.body.username;
     seller.password = bcrypt.hashSync(req.body.password);
     seller.name = req.body.name;
-    seller.discription = req.body.discription;
+    seller.description = req.body.description;
     seller.register_date = Date.now();
+    seller.active_code = code;
     // console.log(req.body.password+" " +req.body.password.length)
 
     if(seller.username == null || seller.password == null || seller.name == null) {
@@ -37,7 +47,7 @@ router.signUp = (req, res) => {
         //     res.json({ errmsg: 'Password must has Capital Letters!'});
         // } else if(!(/\W/.test(req.body.password))) {
         //     res.json({ errmsg: 'Password must has Spacial Characters!'});
-    } else if(seller.discription.length > 200){
+    } else if(req.body.description.length > 200){
         res.json({ errmsg : 'Description must be less than 200 letters' });
     } else if(seller.name.length > 30){
         res.json({ errmsg : 'Name must be less than 30 letters' });
@@ -55,7 +65,7 @@ router.signUp = (req, res) => {
                                 res.json({ errmsg: 'Seller Sign Up Unsuccessfully!',err : err});
                                 return res.status(500).send();
                             } else {
-                                mailer.send(seller.username, 'https://www.google.com');
+                                mailer.send(seller.username, 'seller', seller.active_code);
                                 res.json({message: 'Seller Sign Up Successfully!', data: seller});
                                 return res.status(200).send();
                             }
@@ -67,12 +77,33 @@ router.signUp = (req, res) => {
     }
 };
 
+router.active = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    Seller.findOne({active_code: req.query.code}, function (err, seller) {
+        if (!seller) {
+            res.json({ message: 'Activation failed'});
+        } else if ((Date.now() - seller.register_date) > (1000*60*30)){
+            Seller.deleteOne({username: seller.username});
+            res.json({ message: 'Link expired! Please sign up again'});
+        } else {
+            Seller.updateOne({ username: seller.username}, {active: true}, function(err, newSeller){
+                if (err){
+                    res.json({ message: err});
+                } else {
+                    res.json({ message: 'Successful activation', data: newSeller});
+                }
+            });
+        }
+    });
+};
+
 signToken = (seller) => {
     return jwt.sign({
         iss: 'developer',
         sub: seller.id,
         iat: new Date().getTime()
-    }, JWT_SECRET.JWT_SELLER_SECRET);
+    }, SECRET.JWT_SELLER_SECRET);
 };
 router.signIn = (req, res) => {
     res.setHeader('Content-Type', 'application/json');

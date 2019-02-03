@@ -8,7 +8,8 @@ let SellerSchema = new mongoose.Schema({
         name: { type: String, required: true, unique: true, maxlength: 30},
         description: { type: String, maxlength: 200},
         register_date: Date,
-        active: { type: Boolean, default: false}
+        active: { type: Boolean, default: false},
+        active_code: String
     },
     { collection: 'seller' });
 

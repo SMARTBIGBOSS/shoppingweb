@@ -80,8 +80,8 @@ router.signIn = (req, res) => {
                 // setting the 'set-cookie' header
                 res.cookie('user', administrator._id, {
                     // httpOnly: true, //Flags the cookie to be accessible only by the web server.
-                    // // secure: true, //Marks the cookie to be used with HTTPS only.
-                    // signed: true //Indicates if the cookie should be signed.
+                    // secure: true, //Marks the cookie to be used with HTTPS only.
+                    signed: true //Indicates if the cookie should be signed.
                 });
                 res.json({ message: 'Successfully Login', data: administrator });
                 console.log(req.cookies)
@@ -90,6 +90,21 @@ router.signIn = (req, res) => {
                 res.json({ message: 'Username or Password Incorrect!', data: null });
         }
     });
+};
+
+router.signout = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    if (req.headers.cookie != null) {
+        res.removeHeader('cookie');
+        res.clearCookie('user')
+        res.json({ data: req.headers.cookie });
+    } else{
+    //     console.log(req.headers);
+        res.json({ message: 'Please sign in first' });
+    }
+console.log(req.headers);
+
 };
 
 module.exports = router;

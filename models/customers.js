@@ -7,7 +7,8 @@ let CustomerSchema = new mongoose.Schema({
         password: { type: String, required: true, match: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W])[a-zA-Z\d\W?$]{8,16}/ },
         name: { type: String, required: true, unique: true, maxlength: 30},
         register_date: Date,
-        active: { type: Boolean, default: false}
+        active: { type: Boolean, default: false},
+        active_code: String
     },
     { collection: 'customer' });
 

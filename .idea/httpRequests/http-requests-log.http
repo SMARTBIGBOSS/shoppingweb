@@ -1,3 +1,466 @@
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T103837.200.json
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T103656.200.json
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T103644.500.json
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T103607.500.json
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T103532.500.json
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T103238.500.json
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T103213.500.json
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T103042.500.json
+
+###
+
+POST http://localhost:3000/register/seller
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC","name": "tests","description": "hello"}
+
+<> 2019-02-02T102937.500.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T045814.500.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T045455.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T045411.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T045314.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T045255.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T043141.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T043129.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T043014.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T042440.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T042411.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T042357.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T042122.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T042102.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T042056.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T042044.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T042005.500.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T041932.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T041708.500.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T041653.200.json
+
+###
+
+POST http://localhost:3000/logoin/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T041647.404.html
+
+###
+
+POST http://localhost:3000/logoin/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T041642.404.html
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T041449.200.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T041425.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T041301.500.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T040445.500.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+<> 2019-02-01T040303.500.json
+
+###
+
+POST http://localhost:3000/login/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T040232.200.json
+
+###
+
+POST http://localhost:3000/logout/admin
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"username": "admin@gmail.com", "password": "123abc-ABC"}
+
+<> 2019-02-01T040226.500.json
+
+###
+
 POST http://localhost:3000/login/customer
 Accept: */*
 Cache-Control: no-cache
@@ -28,101 +491,6 @@ Content-Type: application/json
 {"username": "overseasshopping@foxmail.com", "password": "123abc-ABC", "name": "customer"}
 
 <> 2019-01-24T122109.200.json
-
-###
-
-POST http://localhost:3000/register/customer
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC", "name": "customer"}
-
-###
-
-POST http://localhost:3000/register/customer
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC", "name": "customer"}
-
-###
-
-POST http://localhost:3000/register/customer
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC"， "name": "customer"}
-
-<> 2019-01-24T121959.400.html
-
-###
-
-POST http://localhost:3000/register/seller
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
-
-<> 2019-01-24T103539.400.html
-
-###
-
-POST http://localhost:3000/register/seller
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
-
-<> 2019-01-24T103423.400.html
-
-###
-
-POST http://localhost:3000/register/seller
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
-
-<> 2019-01-24T102918.400.html
-
-###
-
-POST http://localhost:3000/register/seller
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
-
-<> 2019-01-24T102907.400.html
-
-###
-
-POST http://localhost:3000/register/seller
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
-
-<> 2019-01-24T102713.400.html
-
-###
-
-POST http://localhost:3000/register/seller
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "seller@gmail.com", "password": "123abc-ABC"， "name": "seller"}
-
-<> 2019-01-24T101459.400.html
 
 ###
 

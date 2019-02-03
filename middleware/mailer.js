@@ -1,6 +1,8 @@
 let nodemailer = require('nodemailer');
 
-function send (receiver, url) {
+function send (receiver, role, code) {
+
+    let url = 'http://localhost:3000/active?code=';
     // Create a SMTP transporter object
     let transporter = nodemailer.createTransport(
         {
@@ -25,7 +27,7 @@ function send (receiver, url) {
         // text: "Please click the following link to complete the register:", // plain text body
         html: "<h3>Welcome to register</h3>" +
             "<body><p>Please click the following link to complete the register:</p></br>" +
-            "<a href='"+ url + "'></a></body>" // html body
+            "<a href='http://localhost:3000/active/"+ role +"?code="+code+"'>Click here</a></body>" // html body
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

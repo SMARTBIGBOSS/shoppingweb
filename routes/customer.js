@@ -3,18 +3,29 @@ let bcrypt = require('bcrypt-nodejs');
 let express = require('express');
 let router = express.Router();
 let jwt = require('jsonwebtoken');
-let JWT_SECRET = require('../configuration/secertkey_config');
+let SECRET = require('../configuration/secertkey_config');
 let mailer = require('../middleware/mailer')
+let crypto = require('crypto')
+
+encryptCode = (username) => {
+    let hmac = crypto.createHash('sha256', SECRET.ACTIVE_CODE);
+    hmac.update(username);
+    let code = hmac.digest('hex');
+    return code;
+};
 
 router.signUp = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     let checkEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+    let code = encryptCode(req.body.username);
+    // console.log(code);
     let customer = new Customer();
     customer.username = req.body.username;
     customer.password = bcrypt.hashSync(req.body.password);
     customer.name = req.body.name;
     customer.register_date = Date.now();
+    customer.active_code = code;
     // console.log(req.body.password+" " +req.body.password.length)
 
     if(customer.username == null || customer.password == null || customer.name == null) {
@@ -52,8 +63,8 @@ router.signUp = (req, res) => {
                                 res.json({ message: 'Customer Sign Up Unsuccessfully!',err : err, data: null});
                                 return res.status(500).send();
                             } else {
-                                mailer.send(customer.username, 'https://www.google.com');
-                                res.json({message: 'Customer Sign Up Successfully!', data: customer});
+                                mailer.send(customer.username, 'customer',customer.active_code);
+                                res.json({message: 'Customer Sign Up Successfully! Active code already sent to your email', data: customer});
                                 return res.status(200).send();
                             }
                         });
@@ -64,12 +75,34 @@ router.signUp = (req, res) => {
     }
 };
 
+router.active = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    Customer.findOne({active_code: req.query.code}, function (err, customer) {
+        if (!customer) {
+            res.json({ message: 'Activation failed'});
+        } else if ((Date.now() - customer.register_date) > (1000*60*30)){
+            Customer.deleteOne({username: customer.username});
+            res.json({ message: 'Link expired! Please sign up again'});
+        } else {
+            Customer.updateOne({ username: customer.username}, {active: true}, function(err, newCustomer){
+                if (err){
+                    res.json({ message: err});
+                } else {
+                    res.json({ message: 'Successful activation', data: newCustomer});
+                }
+            });
+        }
+    });
+};
+
+
 signToken = (customer) => {
     return jwt.sign({
         iss: 'developer',
         sub: customer.id,
         iat: new Date().getTime()
-    }, JWT_SECRET.JWT_CUSTOMER_SECRET);
+    }, SECRET.JWT_CUSTOMER_SECRET);
 };
 router.signIn = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
@@ -98,6 +131,11 @@ router.signIn = (req, res) => {
     });
 };
 
+router.signout = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    res.clearCookie('user');
+};
 
 module.exports = router;
 
