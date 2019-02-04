@@ -4,8 +4,8 @@ let express = require('express');
 let router = express.Router();
 let jwt = require('jsonwebtoken');
 let SECRET = require('../configuration/secertkey_config');
-let mailer = require('../middleware/mailer')
-let crypto = require('crypto')
+let mailer = require('../middleware/mailer');
+let crypto = require('crypto');
 
 encryptCode = (username) => {
     let hmac = crypto.createHash('sha256', SECRET.ACTIVE_CODE);
@@ -130,6 +130,20 @@ router.signIn = (req, res) => {
                 res.json({ message: 'Username or Password Incorrect!', data: null });
         }
     });
+};
+
+router.signout = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    if (req.headers.cookie != null) {
+        res.removeHeader('cookie');
+        res.clearCookie('user')
+        res.json({ data: req.headers.cookie });
+    } else{
+        //     console.log(req.headers);
+        res.json({ message: 'Please sign in first' });
+    }
+    // console.log(req.headers);
 };
 
 

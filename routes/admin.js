@@ -103,8 +103,7 @@ router.signout = (req, res) => {
     //     console.log(req.headers);
         res.json({ message: 'Please sign in first' });
     }
-console.log(req.headers);
-
+// console.log(req.headers);
 };
 
 module.exports = router;

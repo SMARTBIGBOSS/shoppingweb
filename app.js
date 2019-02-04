@@ -26,6 +26,7 @@ db.once('open', function () {
 const admin = require('./routes/admin');
 const seller = require('./routes/seller');
 const customer = require('./routes/customer');
+const catalogue = require('./routes/catalogue');
 const cookiekey = require('./configuration/secertkey_config');
 
 var app = express();
@@ -69,6 +70,10 @@ app.post('/logout/admin', admin.signout);
 app.post('/register/seller', seller.signUp);
 app.post('/login/seller', seller.signIn);
 app.get('/active/seller', seller.active);
+app.get('/catalogue/:seller', catalogue.getAll);
+app.put('/catalogue/edit/:seller/:id', catalogue.edit);
+app.post('/catalogue/add/:seller', catalogue.create);
+app.delete('/catalogue/remove/:seller/:id', catalogue.remove);
 
 // customer APIs
 app.post('/register/customer', customer.signUp);

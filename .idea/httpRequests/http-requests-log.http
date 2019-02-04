@@ -1,3 +1,54 @@
+POST http://localhost:3000/catalogue/add?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":"watch"}
+
+<> 2019-02-03T081002.200.json
+
+###
+
+POST http://localhost:3000/catalogue/add?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":"watch"}
+
+<> 2019-02-03T080902.200.json
+
+###
+
+POST http://localhost:3000/catalogue/add?seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":"watch"}
+
+<> 2019-02-03T080841.200.json
+
+###
+
+POST http://localhost:3000/catalogue/add?seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":"watch"}
+
+###
+
+POST http://localhost:3000/catalogue/add?seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":"watch"}
+
+###
+
 POST http://localhost:3000/register/seller
 Accept: */*
 Cache-Control: no-cache
@@ -436,61 +487,6 @@ Cache-Control: no-cache
 Content-Type: application/json
 
 <> 2019-02-01T040303.500.json
-
-###
-
-POST http://localhost:3000/login/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "admin@gmail.com", "password": "123abc-ABC"}
-
-<> 2019-02-01T040232.200.json
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "admin@gmail.com", "password": "123abc-ABC"}
-
-<> 2019-02-01T040226.500.json
-
-###
-
-POST http://localhost:3000/login/customer
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC"}
-
-<> 2019-01-24T122218.200.json
-
-###
-
-POST http://localhost:3000/login/customer
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC"}
-
-<> 2019-01-24T122153.200.json
-
-###
-
-POST http://localhost:3000/register/customer
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "overseasshopping@foxmail.com", "password": "123abc-ABC", "name": "customer"}
-
-<> 2019-01-24T122109.200.json
 
 ###
 
