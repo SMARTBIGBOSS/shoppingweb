@@ -27,6 +27,7 @@ const admin = require('./routes/admin');
 const seller = require('./routes/seller');
 const customer = require('./routes/customer');
 const catalogue = require('./routes/catalogue');
+const product = require('./routes/product');
 const cookiekey = require('./configuration/secertkey_config');
 
 var app = express();
@@ -39,7 +40,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // signed cookie
-app.use(cookieParser(cookiekey.COOKIE_SECRET));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
     credentials: true,
@@ -71,9 +72,18 @@ app.post('/register/seller', seller.signUp);
 app.post('/login/seller', seller.signIn);
 app.get('/active/seller', seller.active);
 app.get('/catalogue/:seller', catalogue.getAll);
+app.get('/catalogue/:id', catalogue.getOne);
 app.put('/catalogue/edit/:seller/:id', catalogue.edit);
 app.post('/catalogue/add/:seller', catalogue.create);
-app.delete('/catalogue/remove/:seller/:id', catalogue.remove);
+app.delete('/catalogue/remove/:id', catalogue.remove);
+app.post('/product/add/:seller', product.add);
+app.put('/product/save/:seller/:id', product.show);
+app.put('/product/edit/:seller/:id', product.edit);
+app.delete('/product/delete/:id', product.remove);
+app.get('/product/type/:seller/:type', product.getByType);
+app.get('/product/region/:seller/:region', product.getByRegion);
+app.get('/product/:seller/:catalogue', product.getByCatalogue);
+app.get('/product/:id', product.getOne);
 
 // customer APIs
 app.post('/register/customer', customer.signUp);

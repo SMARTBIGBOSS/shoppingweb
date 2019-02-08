@@ -81,7 +81,7 @@ router.signIn = (req, res) => {
                 res.cookie('user', administrator._id, {
                     // httpOnly: true, //Flags the cookie to be accessible only by the web server.
                     // secure: true, //Marks the cookie to be used with HTTPS only.
-                    signed: true //Indicates if the cookie should be signed.
+                    // signed: true //Indicates if the cookie should be signed.
                 });
                 res.json({ message: 'Successfully Login', data: administrator });
                 console.log(req.cookies)
