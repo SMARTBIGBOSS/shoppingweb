@@ -40,7 +40,7 @@ function buildFolderSync(dirname) {
 // buildFolder('uploads/sellers/' + '1' + '/products/' + '1' + '/details', function (err) {
 //     console.log(err);
 // });
-buildFolderSync('./uploads/sellers/' + '1' + '/products/' + '1' + '/details');
+// buildFolderSync('./uploads/sellers/' + '1' + '/products/' + '1' + '/details');
 
 module.exports.buildFolder = buildFolder;
 module.exports.buildFolderSync = buildFolderSync;

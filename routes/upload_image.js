@@ -2,14 +2,14 @@ const multer = require('multer');
 let path = require('path');
 let express = require('express');
 let router = express.Router();
-let buildFolder = require('../middleware/build_folder')
+let buildFolder = require('../middleware/build_folder');
 
 router.productDetail = (req, res) => {
-    let uploadDir = './uploads/sellers/' + req.params.user + '/products/' + req.params.id + '/details';
-    buildFolder.buildFolderSync(uploadDir);
+    let detailDir = './uploads/sellers/' + req.params.user + '/products/' + req.params.id + '/details';
+    buildFolder.buildFolderSync(detailDir);
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, uploadDir);
+            cb(null, detailDir);
         },
         filename: function (req,file,cb) {
             cb(null, Date.now() + path.extname(file.originalname));
@@ -17,9 +17,9 @@ router.productDetail = (req, res) => {
     });
     const fileFilter = (req, file, cb) => {
         if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-            cb(null, false)
+            cb(null, true)
         } else {
-            cb(new Error('File not support'), true)
+            cb(new Error('File not support'), false)
         }
     };
 
@@ -33,43 +33,47 @@ router.productDetail = (req, res) => {
         if(err){
             res.send(err.message);
         }else{
-            res.json({message: 'Upload successfully', data: req.files})
+            console.log(req);
+            res.json({message: 'Upload successfully', data: req.files});
         }
     });
 };
 
 router.productBody = (req, res) => {
-    let uploadDir = './uploads/sellers/' + req.params.user + '/products/' + req.params.id + '/body';
-    buildFolder.buildFolderSync(uploadDir);
+    let bodyDir = './uploads/sellers/' + req.params.user + '/products/' + req.params.id + '/body';
+    buildFolder.buildFolderSync(bodyDir);
     const storage = multer.diskStorage({
-        destination: function (req, file, cb) {
-            cb(null, uploadDir);
+        destination: function (req, file, logo) {
+            logo(null, bodyDir);
         },
-        filename: function (req,file,cb) {
-            cb(null, Date.now() + path.extname(file.originalname));
+        filename: function (req,file,logo) {
+            logo(null, Date.now() + path.extname(file.originalname));
         }
     });
     const fileFilter = (req, file, cb) => {
         if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-            cb(null, false)
+            cb(null, true);
         } else {
-            cb(new Error('File not support'), true)
+            cb(new Error('File not support'), false);
         }
     };
-
     const upload = multer({
         storage: storage,
-        limits: {fileSize:1024 * 1024 * 5},
+        limits: {fileSize:1024 * 1024},
         fileFilter: fileFilter
     }).single('productBody');
 
     upload(req,res,(err) => {
-        if(err){
+        if (err) {
             res.send(err.message);
-        }else{
-            res.json({message: 'Upload successfully', data: req.file})
+            // res.render('uploadImage',{
+            //     msg: err
+            // });
+        } else {
+            console.log(req.file);
+            res.json({message: 'Image Uploaded!', file: req.file});
         }
     });
-}
+};
 
 module.exports = router;
