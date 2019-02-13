@@ -20,7 +20,7 @@ router.create = (req, res) => {
 
         catalogue.save(function (err) {
             if(err)
-                res.json({ message: 'Catalogue is exited!', data: null });
+                res.json({ message: 'Catalogue not added!', data: null });
             else
                 res.json({ message: 'Catalogue successfully added!', data: catalogue });
         });
@@ -30,9 +30,14 @@ router.create = (req, res) => {
 router.edit = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
+    let catalogue = new Catalogue();
+    catalogue.name = req.body.name;
+    catalogue.seller_id = req.params.seller;
+    catalogue.last_edit = Date.now();
+
     if (req.params.seller == null) {
         res.json({ message: 'Seller is unvalidated'});
-    } else if (req.body.name == null) {
+    } else if (req.body.name == null || req.body.name == "") {
         res.json({ message: 'Name is required'});
     } else if (req.body.name.length > 30) {
         res.json({ message: 'Name must be less than 30 characters'});

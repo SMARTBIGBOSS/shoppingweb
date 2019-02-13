@@ -1,0 +1,21 @@
+{
+  "message": "Catalogue edited successfully",
+  "data": {
+    "n": 1,
+    "nModified": 1,
+    "opTime": {
+      "ts": "6656482070736404482",
+      "t": 2
+    },
+    "electionId": "7fffffff0000000000000002",
+    "ok": 1,
+    "operationTime": "6656482070736404482",
+    "$clusterTime": {
+      "clusterTime": "6656482070736404482",
+      "signature": {
+        "hash": "CIfX9VBhv0mySx9o2BVVq13yeM4=",
+        "keyId": "6628771547333001217"
+      }
+    }
+  }
+}

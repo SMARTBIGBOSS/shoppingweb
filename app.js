@@ -28,6 +28,7 @@ const seller = require('./routes/seller');
 const customer = require('./routes/customer');
 const catalogue = require('./routes/catalogue');
 const product = require('./routes/product');
+const uploadImage = require('./routes/upload_image');
 const cookiekey = require('./configuration/secertkey_config');
 
 var app = express();
@@ -84,6 +85,8 @@ app.get('/product/type/:seller/:type', product.getByType);
 app.get('/product/region/:seller/:region', product.getByRegion);
 app.get('/product/:seller/:catalogue', product.getByCatalogue);
 app.get('/product/:id', product.getOne);
+app.post('/product/:user/:id/productDetail', uploadImage.productDetail);
+app.post('/product/:user/:id/productBody', uploadImage.productBody);
 
 // customer APIs
 app.post('/register/customer', customer.signUp);

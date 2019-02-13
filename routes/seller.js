@@ -6,6 +6,7 @@ let jwt = require('jsonwebtoken');
 let SECRET = require('../configuration/secertkey_config');
 let mailer = require('../middleware/mailer');
 let crypto = require('crypto');
+let build_folder = require('../middleware/build_folder');
 
 encryptCode = (username) => {
     let hmac = crypto.createHash('sha256', SECRET.ACTIVE_CODE);

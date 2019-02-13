@@ -10,8 +10,8 @@ function send (receiver, role, code) {
             port: 465,// secure:true for port 465, secure:false for port 587
             secure: true,
             auth: {
-                user: '425765498@qq.com',//overseasshopping@foxmail.com
-                pass: 'yifkypwddjlrbghj'//kviuslgnmnrtbjib
+                user: 'overseasshopping@foxmail.com',//overseasshopping@foxmail.com
+                pass: 'tdojgwftdeyycbch'//kviuslgnmnrtbjib
             },
             tls: {
                 rejectUnauthorized: false
@@ -21,7 +21,7 @@ function send (receiver, role, code) {
         }
     );
     let mailOptions = {
-        from: '"425765498" <425765498@qq.com>', // sender address
+        from: '"overseasshopping" <overseasshopping@foxmail.com>', // sender address
         to: receiver, // list of receivers overseasshopping@foxmail.com
         subject: "Welcome to register", // Subject line
         // text: "Please click the following link to complete the register:", // plain text body

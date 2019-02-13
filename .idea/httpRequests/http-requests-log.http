@@ -1,3 +1,14 @@
+PUT http://localhost:3000/catalogue/edit/5c561bece1399a34608ba1d4/5c5f593b8a77400adcf0033b?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-10T091006.200.json
+
+###
+
 POST http://localhost:3000/catalogue/add?seller=1&seller=1
 Accept: */*
 Cache-Control: no-cache
@@ -478,15 +489,6 @@ Cache-Control: no-cache
 Content-Type: application/json
 
 <> 2019-02-01T040445.500.json
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-<> 2019-02-01T040303.500.json
 
 ###
 
