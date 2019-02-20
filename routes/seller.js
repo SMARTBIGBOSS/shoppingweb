@@ -147,6 +147,30 @@ router.signout = (req, res) => {
     // console.log(req.headers);
 };
 
+router.editAccount = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    let seller = new Seller({
+        username: req.body.username,
+        password: bcrypt.hashSync(req.body.password),
+        name: req.body.name,
+        description: req.body.description
+    });
+
+    Seller.update({"_id": req.params.user},
+        {   username: seller.username,
+            password: seller.password,
+            name: seller.name,
+            description: seller.description},
+        function (err, seller) {
+            if (err) {
+                res.json({message: 'Seller not edited', data: null});
+            } else {
+                res.json({message: 'Seller successfully edited', data: seller});
+            }
+        });
+};
+
 
 module.exports = router;
 

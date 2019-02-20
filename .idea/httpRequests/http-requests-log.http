@@ -1,3 +1,146 @@
+GET http://localhost:3000/catalogues/5c6339630516b0316085e10f?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T071157-1.200.json
+
+###
+
+GET http://localhost:3000/catalogues/5c6339630516b0316085e10f?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T071157.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T071144.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T071110.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T071008.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T070820.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c6339630516b0316085e10f?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T070758.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T070651.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T070524.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c6339630516b0316085e10f?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T070510.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T070301.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T070014.200.json
+
+###
+
+GET http://localhost:3000/catalogue/5c655a5fb9ef5b0a3059c0c9?seller=1&seller=1
+Accept: */*
+Cache-Control: no-cache
+Content-Type: application/json
+
+{"name":""}
+
+<> 2019-02-14T065915.200.json
+
+###
+
 PUT http://localhost:3000/catalogue/edit/5c561bece1399a34608ba1d4/5c5f593b8a77400adcf0033b?seller=1&seller=1
 Accept: */*
 Cache-Control: no-cache
@@ -366,129 +509,6 @@ Cache-Control: no-cache
 Content-Type: application/json
 
 <> 2019-02-01T042056.200.json
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-<> 2019-02-01T042044.200.json
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-<> 2019-02-01T042005.500.json
-
-###
-
-POST http://localhost:3000/login/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "admin@gmail.com", "password": "123abc-ABC"}
-
-<> 2019-02-01T041932.200.json
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-<> 2019-02-01T041708.500.json
-
-###
-
-POST http://localhost:3000/login/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "admin@gmail.com", "password": "123abc-ABC"}
-
-<> 2019-02-01T041653.200.json
-
-###
-
-POST http://localhost:3000/logoin/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "admin@gmail.com", "password": "123abc-ABC"}
-
-<> 2019-02-01T041647.404.html
-
-###
-
-POST http://localhost:3000/logoin/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-<> 2019-02-01T041642.404.html
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-###
-
-POST http://localhost:3000/login/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "admin@gmail.com", "password": "123abc-ABC"}
-
-<> 2019-02-01T041449.200.json
-
-###
-
-POST http://localhost:3000/login/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-{"username": "admin@gmail.com", "password": "123abc-ABC"}
-
-<> 2019-02-01T041425.200.json
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-<> 2019-02-01T041301.500.json
-
-###
-
-POST http://localhost:3000/logout/admin
-Accept: */*
-Cache-Control: no-cache
-Content-Type: application/json
-
-<> 2019-02-01T040445.500.json
 
 ###
 

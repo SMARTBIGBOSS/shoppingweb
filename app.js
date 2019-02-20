@@ -72,13 +72,13 @@ app.post('/logout/admin', admin.signout);
 app.post('/register/seller', seller.signUp);
 app.post('/login/seller', seller.signIn);
 app.get('/active/seller', seller.active);
-app.get('/catalogue/:seller', catalogue.getAll);
+app.get('/catalogues/:seller', catalogue.getAll);
 app.get('/catalogue/:id', catalogue.getOne);
 app.put('/catalogue/edit/:seller/:id', catalogue.edit);
 app.post('/catalogue/add/:seller', catalogue.create);
 app.delete('/catalogue/remove/:id', catalogue.remove);
 app.post('/product/add/:seller', product.add);
-app.put('/product/save/:seller/:id', product.show);
+// app.put('/product/save/:seller/:id', product.show);
 app.put('/product/edit/:seller/:id', product.edit);
 app.delete('/product/delete/:id', product.remove);
 app.get('/product/type/:seller/:type', product.getByType);
@@ -87,11 +87,17 @@ app.get('/product/:seller/:catalogue', product.getByCatalogue);
 app.get('/product/:id', product.getOne);
 app.post('/product/:user/:id/productDetail', uploadImage.productDetail);
 app.post('/product/:user/:id/productBody', uploadImage.productBody);
+app.post('/seller/:user/logo', uploadImage.sellerAccount);
+app.put('/seller/:user/edit', seller.editAccount);
+
 
 // customer APIs
 app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);
 app.get('/active/customer', customer.active);
+app.post('/customer/:user/logo', uploadImage.customerAccount);
+app.put('/customer/:user/edit', customer.editAccount);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

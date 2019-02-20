@@ -145,5 +145,29 @@ router.signout = (req, res) => {
     // console.log(req.headers);
 };
 
+router.editAccount = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    let customer = new Customer({
+        username: req.body.username,
+        password: bcrypt.hashSync(req.body.password),
+        name: req.body.name,
+    });
+
+    Customer.update({"_id": req.params.user},
+        {
+            username: customer.username,
+            password: customer.password,
+            name: customer.name
+        },
+        function (err, customer) {
+            if (err) {
+                res.json({message: 'Customer not edited', data: null});
+            } else {
+                res.json({message: 'Customer successfully edited', data: customer});
+            }
+        });
+};
+
 module.exports = router;
 

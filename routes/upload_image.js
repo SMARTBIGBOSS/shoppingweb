@@ -43,11 +43,11 @@ router.productBody = (req, res) => {
     let bodyDir = './uploads/sellers/' + req.params.user + '/products/' + req.params.id + '/body';
     buildFolder.buildFolderSync(bodyDir);
     const storage = multer.diskStorage({
-        destination: function (req, file, logo) {
-            logo(null, bodyDir);
+        destination: function (req, file, cb) {
+            cb(null, bodyDir);
         },
-        filename: function (req,file,logo) {
-            logo(null, Date.now() + path.extname(file.originalname));
+        filename: function (req,file,cb) {
+            cb(null, Date.now() + path.extname(file.originalname));
         }
     });
     const fileFilter = (req, file, cb) => {
@@ -62,6 +62,80 @@ router.productBody = (req, res) => {
         limits: {fileSize:1024 * 1024},
         fileFilter: fileFilter
     }).single('productBody');
+
+    upload(req,res,(err) => {
+        if (err) {
+            res.send(err.message);
+            // res.render('uploadImage',{
+            //     msg: err
+            // });
+        } else {
+            console.log(req.file);
+            res.json({message: 'Image Uploaded!', file: req.file});
+        }
+    });
+};
+
+router.sellerAccount = (req, res) => {
+    let bodyDir = './uploads/sellers/' + req.params.user + '/account/';
+    buildFolder.buildFolderSync(bodyDir);
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, bodyDir);
+        },
+        filename: function (req,file,cb) {
+            cb(null, Date.now() + path.extname(file.originalname));
+        }
+    });
+    const fileFilter = (req, file, cb) => {
+        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+            cb(null, true);
+        } else {
+            cb(new Error('File not support'), false);
+        }
+    };
+    const upload = multer({
+        storage: storage,
+        limits: {fileSize:1024 * 1024},
+        fileFilter: fileFilter
+    }).single('logo');
+
+    upload(req,res,(err) => {
+        if (err) {
+            res.send(err.message);
+            // res.render('uploadImage',{
+            //     msg: err
+            // });
+        } else {
+            console.log(req.file);
+            res.json({message: 'Image Uploaded!', file: req.file});
+        }
+    });
+};
+
+router.customerAccount = (req, res) => {
+    let bodyDir = './uploads/customers/' + req.params.user + '/account/';
+    buildFolder.buildFolderSync(bodyDir);
+    const storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, bodyDir);
+        },
+        filename: function (req,file,cb) {
+            cb(null, Date.now() + path.extname(file.originalname));
+        }
+    });
+    const fileFilter = (req, file, cb) => {
+        if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+            cb(null, true);
+        } else {
+            cb(new Error('File not support'), false);
+        }
+    };
+    const upload = multer({
+        storage: storage,
+        limits: {fileSize:1024 * 1024},
+        fileFilter: fileFilter
+    }).single('logo');
 
     upload(req,res,(err) => {
         if (err) {
