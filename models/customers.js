@@ -8,7 +8,8 @@ let CustomerSchema = new mongoose.Schema({
         name: { type: String, required: true, unique: true, maxlength: 30},
         register_date: Date,
         active: { type: Boolean, default: false},
-        active_code: String
+        active_code: String,
+        logo_id: String
     },
     { collection: 'customer' });
 

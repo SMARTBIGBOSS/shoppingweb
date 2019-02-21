@@ -9,7 +9,9 @@ let SellerSchema = new mongoose.Schema({
         description: { type: String, maxlength: 200},
         register_date: Date,
         active: { type: Boolean, default: false},
-        active_code: String
+        active_code: String,
+        logo_id: String
+
     },
     { collection: 'seller' });
 

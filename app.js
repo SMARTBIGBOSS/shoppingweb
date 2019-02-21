@@ -87,16 +87,18 @@ app.get('/product/:seller/:catalogue', product.getByCatalogue);
 app.get('/product/:id', product.getOne);
 app.post('/product/:user/:id/productDetail', uploadImage.productDetail);
 app.post('/product/:user/:id/productBody', uploadImage.productBody);
-app.post('/seller/:user/logo', uploadImage.sellerAccount);
+app.post('/seller/:user/uploadLogo', uploadImage.sellerLogo);
 app.put('/seller/:user/edit', seller.editAccount);
+app.get('/seller/:user/logo', uploadImage.loadSellerLogo)
 
 
 // customer APIs
 app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);
 app.get('/active/customer', customer.active);
-app.post('/customer/:user/logo', uploadImage.customerAccount);
+app.post('/customer/:user/uploadLogo', uploadImage.customerLogo);
 app.put('/customer/:user/edit', customer.editAccount);
+app.get('/customer/:user/logo', uploadImage.loadCustomerLogo);
 
 
 // catch 404 and forward to error handler
