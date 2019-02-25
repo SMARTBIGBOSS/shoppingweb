@@ -10,7 +10,7 @@ let SellerSchema = new mongoose.Schema({
         register_date: Date,
         active: { type: Boolean, default: false},
         active_code: String,
-        logo_id: String
+        logo_id: {type: String, default: null}
 
     },
     { collection: 'seller' });

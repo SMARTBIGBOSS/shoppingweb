@@ -12,7 +12,7 @@ let mongoose = require('mongoose');
 
 // connect to mongodb
 let mongodbUri = 'mongodb://shoppingdb:shoppingdb100@ds125331.mlab.com:25331/shoppingdb';
-mongoose.connect(mongodbUri,{ useNewUrlParser: true });
+mongoose.connect(mongodbUri,{ useNewUrlParser: true, useCreateIndex: true });
 let db = mongoose.connection;
 
 db.on('error', function (err) {
@@ -89,7 +89,9 @@ app.post('/product/:user/:id/productDetail', uploadImage.productDetail);
 app.post('/product/:user/:id/productBody', uploadImage.productBody);
 app.post('/seller/:user/uploadLogo', uploadImage.sellerLogo);
 app.put('/seller/:user/edit', seller.editAccount);
-app.get('/seller/:user/logo', uploadImage.loadSellerLogo)
+app.get('/seller/:user/logo', uploadImage.loadSellerLogo);
+app.get('/seller/product/:id/body', uploadImage.loadProductBodyImg);
+app.get('/seller/product/:id/mainImg', uploadImage.getMainImg);
 
 
 // customer APIs
