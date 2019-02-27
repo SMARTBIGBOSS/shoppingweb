@@ -30,6 +30,7 @@ const catalogue = require('./routes/catalogue');
 const product = require('./routes/product');
 const uploadImage = require('./routes/upload_image');
 const cookiekey = require('./configuration/secertkey_config');
+const auth = require('./middleware/auth');
 
 var app = express();
 
@@ -41,7 +42,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 // signed cookie
-app.use(cookieParser());
+app.use(cookieParser(cookiekey.COOKIE_SECRET));
+
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
     credentials: true,
@@ -72,25 +74,25 @@ app.post('/logout/admin', admin.signout);
 app.post('/register/seller', seller.signUp);
 app.post('/login/seller', seller.signIn);
 app.get('/active/seller', seller.active);
-app.get('/catalogues/:seller', catalogue.getAll);
-app.get('/catalogue/:id', catalogue.getOne);
-app.put('/catalogue/edit/:seller/:id', catalogue.edit);
-app.post('/catalogue/add/:seller', catalogue.create);
+app.get('/:seller/catalogues', auth.authSeller, catalogue.getAll);
+app.get('/:seller/catalogue/:id', auth.authSeller, catalogue.getOne);
+app.put('/:seller/catalogue/edit/:id', auth.authSeller, catalogue.edit);
+app.post('/:seller/catalogue/add', auth.authSeller, catalogue.create);
 app.delete('/catalogue/remove/:id', catalogue.remove);
-app.post('/product/add/:seller', product.add);
+app.post('/:seller/product/add', auth.authSeller, product.add);
 // app.put('/product/save/:seller/:id', product.show);
-app.put('/product/edit/:seller/:id', product.edit);
+app.put('/:seller/product/edit/:id', auth.authSeller, product.edit);
 app.delete('/product/delete/:id', product.remove);
-app.get('/product/type/:seller/:type', product.getByType);
-app.get('/product/region/:seller/:region', product.getByRegion);
-app.get('/product/:seller/:catalogue', product.getByCatalogue);
+// app.get('/:seller/product/type/:type', auth.authSeller, product.getByType);
+//app.get('/:seller/product/region/:region', product.getByRegion);
+app.get('/:seller/product/:catalogue', auth.authSeller, product.getByCatalogue);
 app.get('/product/:id', product.getOne);
-app.post('/product/:user/:id/productDetail', uploadImage.productDetail);
-app.post('/product/:user/:id/productBody', uploadImage.productBody);
-app.post('/seller/:user/uploadLogo', uploadImage.sellerLogo);
-app.put('/seller/:user/edit', seller.editAccount);
-app.get('/seller/:user/logo', uploadImage.loadSellerLogo);
-app.get('/seller/product/:id/body', uploadImage.loadProductBodyImg);
+app.post('/:seller/product/:id/productDetail', auth.authSeller, uploadImage.productDetail);
+app.post('/:seller/product/:id/productBody', auth.authSeller, uploadImage.productBody);
+app.post('/seller/:seller/uploadLogo', auth.authSeller, uploadImage.sellerLogo);
+app.put('/seller/:seller/edit', auth.authSeller, seller.editAccount);
+app.get('/seller/:seller/logo', auth.authSeller, uploadImage.loadSellerLogo);
+app.get('/seller/:seller/product/:id/body', auth.authSeller, uploadImage.loadProductBodyImg);
 app.get('/seller/product/:id/mainImg', uploadImage.getMainImg);
 
 
@@ -98,9 +100,9 @@ app.get('/seller/product/:id/mainImg', uploadImage.getMainImg);
 app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);
 app.get('/active/customer', customer.active);
-app.post('/customer/:user/uploadLogo', uploadImage.customerLogo);
-app.put('/customer/:user/edit', customer.editAccount);
-app.get('/customer/:user/logo', uploadImage.loadCustomerLogo);
+app.post('/customer/:customer/uploadLogo', auth.authCustomer, uploadImage.customerLogo);
+app.put('/customer/:customer/edit', auth.authCustomer, customer.editAccount);
+app.get('/customer/:customer/logo', auth.authCustomer, uploadImage.loadCustomerLogo);
 
 
 // catch 404 and forward to error handler

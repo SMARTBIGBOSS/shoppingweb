@@ -2,7 +2,7 @@ let Customer = require('../models/customers');
 let bcrypt = require('bcrypt-nodejs');
 let express = require('express');
 let router = express.Router();
-let jwt = require('jsonwebtoken');
+// let jwt = require('jsonwebtoken');
 let SECRET = require('../configuration/secertkey_config');
 let mailer = require('../middleware/mailer');
 let crypto = require('crypto');
@@ -97,13 +97,13 @@ router.active = (req, res) => {
 };
 
 
-signToken = (customer) => {
-    return jwt.sign({
-        iss: 'developer',
-        sub: customer.id,
-        iat: new Date().getTime()
-    }, SECRET.JWT_CUSTOMER_SECRET);
-};
+// signToken = (customer) => {
+//     return jwt.sign({
+//         iss: 'developer',
+//         sub: customer.id,
+//         iat: new Date().getTime()
+//     }, SECRET.JWT_CUSTOMER_SECRET);
+// };
 router.signIn = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
@@ -114,13 +114,13 @@ router.signIn = (req, res) => {
             res.json({ message: 'User inactive!', data: null })
         } else{
             if(bcrypt.compareSync(req.body.password, customer.password)){
-                let token = signToken(customer);
-                res.header('token',token);
+                // let token = signToken(customer);
+                // res.header('token',token);
                 // setting the 'set-cookie' header
                 res.cookie('user', customer._id, {
-                    // httpOnly: true, //Flags the cookie to be accessible only by the web server.
+                    httpOnly: true, //Flags the cookie to be accessible only by the web server.
                     // // secure: true, //Marks the cookie to be used with HTTPS only.
-                    // signed: true //Indicates if the cookie should be signed.
+                    signed: true //Indicates if the cookie should be signed.
                 });
                 res.json({ message: 'Successfully Login', data: customer });
                 console.log(req.cookies)

@@ -13,7 +13,7 @@ let fs = require('fs');
 router.productDetail = (req, res) => {
     // res.setHeader('Content-Type', 'application/json');
 
-    let detailDir = './uploads/sellers/' + req.params.user + '/products/' + req.params.id + '/details';
+    let detailDir = './uploads/sellers/' + req.params.seller + '/products/' + req.params.id + '/details';
     buildFolder.buildFolderSync(detailDir);
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -47,7 +47,7 @@ router.productDetail = (req, res) => {
             }
             console.log(imagesPath);
             let images = new Image();
-            images.owner = req.params.user;
+            images.owner = req.params.seller;
             images.path = imagesPath;
             images.register_date = Date.now();
             images.save(function (err) {
@@ -91,7 +91,7 @@ router.productDetail = (req, res) => {
 router.productBody = (req, res) => {
     // res.setHeader('Content-Type', 'application/json');
 
-    let bodyDir = './uploads/sellers/' + req.params.user + '/products/' + req.params.id + '/body';
+    let bodyDir = './uploads/sellers/' + req.params.seller + '/products/' + req.params.id + '/body';
     buildFolder.buildFolderSync(bodyDir);
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -119,7 +119,7 @@ router.productBody = (req, res) => {
             res.send(err.message);
         } else {
             let image = new Image();
-            image.owner = req.params.user;
+            image.owner = req.params.seller;
             image.path = req.file.path;
             image.register_date = Date.now();
             image.save(function (err) {
@@ -163,7 +163,7 @@ router.productBody = (req, res) => {
 router.sellerLogo = (req, res) => {
     // res.setHeader('Content-Type', 'application/json');
 
-    let bodyDir = './uploads/sellers/' + req.params.user + '/account/';
+    let bodyDir = './uploads/sellers/' + req.params.seller + '/account/';
     buildFolder.buildFolderSync(bodyDir);
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -191,7 +191,7 @@ router.sellerLogo = (req, res) => {
             res.send(err.message);
         } else {
             let logo = new Logo();
-            logo.owner = req.params.user;
+            logo.owner = req.params.seller;
             logo.path = req.file.path;
             logo.register_date = Date.now();
             logo.save(function (err) {
@@ -205,7 +205,7 @@ router.sellerLogo = (req, res) => {
                         if (err) {
                             // res.json({message: 'Logo not found', file: null});
                         } else {
-                            Seller.updateOne({"_id": req.params.user},
+                            Seller.updateOne({"_id": req.params.seller},
                                 {logo_id: img._id},
                                 function (err) {
                                     if (err){
@@ -225,7 +225,7 @@ router.sellerLogo = (req, res) => {
 router.customerLogo = (req, res) => {
     // res.setHeader('Content-Type', 'application/json');
 
-    let bodyDir = './uploads/customers/' + req.params.user + '/account/';
+    let bodyDir = './uploads/customers/' + req.params.customer + '/account/';
     buildFolder.buildFolderSync(bodyDir);
     const storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -253,7 +253,7 @@ router.customerLogo = (req, res) => {
             res.send(err.message);
         } else {
             let logo = new Logo();
-            logo.owner = req.params.user;
+            logo.owner = req.params.customer;
             logo.path = req.file.path;
             logo.register_date = Date.now();
             logo.save(function (err) {
@@ -267,7 +267,7 @@ router.customerLogo = (req, res) => {
                         if (err) {
                             res.json({message: 'Logo not found', file: null});
                         } else {
-                            Customer.updateOne({"_id": req.params.user},
+                            Customer.updateOne({"_id": req.params.customer},
                                 {logo_id: img._id},
                                 function (err) {
                                     if (err){
@@ -304,7 +304,7 @@ router.loadCustomerLogo = (req, res) => {
     res.writeHead(200,{'Content-Type' : 'image/jpeg'});
 
     let imgId = '';
-    Customer.findById(req.params.user, function(err, user){
+    Customer.findById(req.params.customer, function(err, user){
         if (err) {
             res.json({message: 'Customer not found'});
         } else {
@@ -328,7 +328,7 @@ router.loadSellerLogo = (req, res) => {
     res.writeHead(200,{'Content-Type' : 'image/jpeg'});
 
     let imgId = '';
-    Seller.findById(req.params.user, function(err, user){
+    Seller.findById(req.params.seller, function(err, user){
         if (err) {
             res.json({message: 'Seller not found'});
         } else {

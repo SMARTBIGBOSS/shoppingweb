@@ -2,11 +2,10 @@ let Seller = require('../models/sellers');
 let bcrypt = require('bcrypt-nodejs');
 let express = require('express');
 let router = express.Router();
-let jwt = require('jsonwebtoken');
+// let jwt = require('jsonwebtoken');
 let SECRET = require('../configuration/secertkey_config');
 let mailer = require('../middleware/mailer');
 let crypto = require('crypto');
-let build_folder = require('../middleware/build_folder');
 
 encryptCode = (username) => {
     let hmac = crypto.createHash('sha256', SECRET.ACTIVE_CODE);
@@ -99,13 +98,13 @@ router.active = (req, res) => {
     });
 };
 
-signToken = (seller) => {
-    return jwt.sign({
-        iss: 'developer',
-        sub: seller.id,
-        iat: new Date().getTime()
-    }, SECRET.JWT_SELLER_SECRET);
-};
+// signToken = (seller) => {
+//     return jwt.sign({
+//         iss: 'developer',
+//         sub: seller.id,
+//         iat: new Date().getTime()
+//     }, SECRET.JWT_SELLER_SECRET);
+// };
 router.signIn = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
@@ -116,13 +115,13 @@ router.signIn = (req, res) => {
             res.json({ message: 'User inactive!'})
         } else{
             if(bcrypt.compareSync(req.body.password, seller.password)){
-                let token = signToken(seller);
-                res.header('token',token);
+                // let token = signToken(seller);
+                // res.header('token',token);
                 // setting the 'set-cookie' header
                 res.cookie('user', seller._id, {
-                    // httpOnly: true, //Flags the cookie to be accessible only by the web server.
+                    httpOnly: true, //Flags the cookie to be accessible only by the web server.
                     // // secure: true, //Marks the cookie to be used with HTTPS only.
-                    // signed: true //Indicates if the cookie should be signed.
+                    signed: true //Indicates if the cookie should be signed.
                 });
                 res.json({ message: 'Successfully Login', data: seller });
                 console.log(req.cookies)
@@ -171,6 +170,11 @@ router.editAccount = (req, res) => {
         });
 };
 
+router.getOne = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    Seller.findById
+};
 
 module.exports = router;
 

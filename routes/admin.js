@@ -2,8 +2,8 @@ let Admin = require('../models/administrators');
 let bcrypt = require('bcrypt-nodejs');
 let express = require('express');
 let router = express.Router();
-let jwt = require('jsonwebtoken');
-let JWT_SECRET = require('../configuration/secertkey_config');
+// let jwt = require('jsonwebtoken');
+// let JWT_SECRET = require('../configuration/secertkey_config');
 
 router.signUp = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
@@ -58,13 +58,13 @@ router.signUp = (req, res) => {
     }
 };
 
-signToken = (administrator) => {
-    return jwt.sign({
-        iss: 'developer',
-        sub: administrator.id,
-        iat: new Date().getTime()
-    }, JWT_SECRET.JWT_ADMIN_SECRET);
-};
+// signToken = (administrator) => {
+//     return jwt.sign({
+//         iss: 'developer',
+//         sub: administrator.id,
+//         iat: new Date().getTime()
+//     }, JWT_SECRET.JWT_ADMIN_SECRET);
+// };
 router.signIn = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
@@ -75,13 +75,13 @@ router.signIn = (req, res) => {
             res.json({ message: 'User is Blocked!'})
         } else{
             if(bcrypt.compareSync(req.body.password, administrator.password)){
-                let token = signToken(administrator);
-                res.header('token',token);
+                // let token = signToken(administrator);
+                // res.header('token',token);
                 // setting the 'set-cookie' header
                 res.cookie('user', administrator._id, {
-                    // httpOnly: true, //Flags the cookie to be accessible only by the web server.
+                    httpOnly: true, //Flags the cookie to be accessible only by the web server.
                     // secure: true, //Marks the cookie to be used with HTTPS only.
-                    // signed: true //Indicates if the cookie should be signed.
+                    signed: true //Indicates if the cookie should be signed.
                 });
                 res.json({ message: 'Successfully Login', data: administrator });
                 console.log(req.cookies)
