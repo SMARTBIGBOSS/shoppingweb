@@ -74,6 +74,7 @@ app.post('/logout/admin', admin.signout);
 app.post('/register/seller', seller.signUp);
 app.post('/login/seller', seller.signIn);
 app.get('/active/seller', seller.active);
+app.get('/seller/:seller', auth.authSeller, seller.getOne);
 app.get('/:seller/catalogues', auth.authSeller, catalogue.getAll);
 app.get('/:seller/catalogue/:id', auth.authSeller, catalogue.getOne);
 app.put('/:seller/catalogue/edit/:id', auth.authSeller, catalogue.edit);
@@ -91,6 +92,7 @@ app.post('/:seller/product/:id/productDetail', auth.authSeller, uploadImage.prod
 app.post('/:seller/product/:id/productBody', auth.authSeller, uploadImage.productBody);
 app.post('/seller/:seller/uploadLogo', auth.authSeller, uploadImage.sellerLogo);
 app.put('/seller/:seller/edit', auth.authSeller, seller.editAccount);
+app.put('/seller/:seller/editwithoutpass', auth.authSeller, seller.editAccountWithoutPass);
 app.get('/seller/:seller/logo', auth.authSeller, uploadImage.loadSellerLogo);
 app.get('/seller/:seller/product/:id/body', auth.authSeller, uploadImage.loadProductBodyImg);
 app.get('/seller/product/:id/mainImg', uploadImage.getMainImg);
@@ -100,8 +102,10 @@ app.get('/seller/product/:id/mainImg', uploadImage.getMainImg);
 app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);
 app.get('/active/customer', customer.active);
+app.get('/customer/:customer', auth.authCustomer, customer.getOne);
 app.post('/customer/:customer/uploadLogo', auth.authCustomer, uploadImage.customerLogo);
 app.put('/customer/:customer/edit', auth.authCustomer, customer.editAccount);
+app.put('/customer/:customer/editwithoutpass', auth.authCustomer, customer.editAccountWithoutPass);
 app.get('/customer/:customer/logo', auth.authCustomer, uploadImage.loadCustomerLogo);
 
 

@@ -47,7 +47,8 @@ router.signUp = (req, res) => {
         //     res.json({ errmsg: 'Password must has Capital Letters!'});
         // } else if(!(/\W/.test(req.body.password))) {
         //     res.json({ errmsg: 'Password must has Spacial Characters!'});
-    } else if(req.body.description.length > 200){
+    }
+    else if(req.body.description.length > 200){
         res.json({ errmsg : 'Description must be less than 200 letters' });
     } else if(seller.name.length > 30){
         res.json({ errmsg : 'Name must be less than 30 letters' });
@@ -149,23 +150,56 @@ router.signout = (req, res) => {
 router.editAccount = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
+    if((8 > req.body.password.length) || (req.body.password.length > 16)) {
+        res.json({ errmsg : 'Password must be Between 8 Characters and 16 Characters!', data: null });
+    } else if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W])[a-zA-Z\d\W?$]{8,16}/.test(req.body.password))) {
+        res.json({errmsg: 'Password must has Number, Lowercase Letter, Capital Letter and Special Character!', data: null});
+    } else {
+        let seller = new Seller({
+            username: req.body.username,
+            password: bcrypt.hashSync(req.body.password),
+            name: req.body.name,
+            description: req.body.description
+        });
+        // console.log(seller);
+
+        Seller.update({"_id": req.params.seller},
+            {   username: seller.username,
+                password: seller.password,
+                name: seller.name,
+                description: seller.description},
+            function (err, seller) {
+                if (err) {
+                    res.json({message: 'Seller not edited', data: null});
+                } else {
+                    res.json({message: 'Seller successfully edited', data: seller});
+                }
+            });
+    }
+};
+
+router.editAccountWithoutPass = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
     let seller = new Seller({
         username: req.body.username,
-        password: bcrypt.hashSync(req.body.password),
+        // password: bcrypt.hashSync(req.body.password),
         name: req.body.name,
         description: req.body.description
     });
 
-    Seller.update({"_id": req.params.user},
-        {   username: seller.username,
-            password: seller.password,
+    Seller.update({"_id": req.params.seller},
+        {
+            username: seller.username,
+            // password: customer.password,
             name: seller.name,
-            description: seller.description},
+            description: seller.description
+        },
         function (err, seller) {
             if (err) {
-                res.json({message: 'Seller not edited', data: null});
+                res.json({message: 'Customer not edited', data: null});
             } else {
-                res.json({message: 'Seller successfully edited', data: seller});
+                res.json({message: 'Customer successfully edited', data: seller});
             }
         });
 };
@@ -173,7 +207,13 @@ router.editAccount = (req, res) => {
 router.getOne = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    Seller.findById
+    Seller.findById(req.params.seller, function(err, seller){
+        if (err){
+            res.json({message: 'Seller not found', data: null});
+        } else {
+            res.json({data: seller});
+        }
+    });
 };
 
 module.exports = router;

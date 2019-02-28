@@ -47,7 +47,8 @@ router.signUp = (req, res) => {
         //     res.json({ errmsg: 'Password must has Capital Letters!'});
         // } else if(!(/\W/.test(req.body.password))) {
         //     res.json({ errmsg: 'Password must has Spacial Characters!'});
-    } else if(customer.name.length > 30){
+    }
+    else if(customer.name.length > 30){
         res.json({ message : 'Name must be less than 30 letters', data: null });
     }else{
         Customer.findOne({ username: req.body.username }, function (err, user) {
@@ -148,16 +149,46 @@ router.signout = (req, res) => {
 router.editAccount = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
+    if((8 > req.body.password.length) || (req.body.password.length > 16)) {
+        res.json({ errmsg : 'Password must be Between 8 Characters and 16 Characters!', data: null });
+    } else if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W])[a-zA-Z\d\W?$]{8,16}/.test(req.body.password))) {
+        res.json({errmsg: 'Password must has Number, Lowercase Letter, Capital Letter and Special Character!', data: null});
+    } else {
+        let customer = new Customer({
+            username: req.body.username,
+            password: bcrypt.hashSync(req.body.password),
+            name: req.body.name,
+        });
+
+        Customer.updateOne({"_id": req.params.customer},
+            {
+                username: customer.username,
+                password: customer.password,
+                name: customer.name
+            },
+            function (err, customer) {
+                if (err) {
+                    res.json({message: 'Customer not edited', data: null});
+                } else {
+                    res.json({message: 'Customer successfully edited', data: customer});
+                }
+            });
+    }
+};
+
+router.editAccountWithoutPass = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
     let customer = new Customer({
         username: req.body.username,
-        password: bcrypt.hashSync(req.body.password),
+        // password: bcrypt.hashSync(req.body.password),
         name: req.body.name,
     });
 
-    Customer.update({"_id": req.params.user},
+    Customer.update({"_id": req.params.customer},
         {
             username: customer.username,
-            password: customer.password,
+            // password: customer.password,
             name: customer.name
         },
         function (err, customer) {
@@ -167,6 +198,18 @@ router.editAccount = (req, res) => {
                 res.json({message: 'Customer successfully edited', data: customer});
             }
         });
+};
+
+router.getOne = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    Customer.findById(req.params.customer, function(err, customer){
+        if (err){
+            res.json({message: 'Product not found', data: null});
+        } else {
+            res.json({data: customer});
+        }
+    });
 };
 
 module.exports = router;
