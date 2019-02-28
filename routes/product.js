@@ -187,6 +187,7 @@ router.getByType = (req, res) => {
         }
     });
 };
+
 router.getByCatalogue = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 

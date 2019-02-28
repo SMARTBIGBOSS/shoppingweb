@@ -29,6 +29,7 @@ const customer = require('./routes/customer');
 const catalogue = require('./routes/catalogue');
 const product = require('./routes/product');
 const uploadImage = require('./routes/upload_image');
+const address = require('./routes/address');
 const cookiekey = require('./configuration/secertkey_config');
 const auth = require('./middleware/auth');
 
@@ -107,6 +108,11 @@ app.post('/customer/:customer/uploadLogo', auth.authCustomer, uploadImage.custom
 app.put('/customer/:customer/edit', auth.authCustomer, customer.editAccount);
 app.put('/customer/:customer/editwithoutpass', auth.authCustomer, customer.editAccountWithoutPass);
 app.get('/customer/:customer/logo', auth.authCustomer, uploadImage.loadCustomerLogo);
+app.post('/customer/:customer/address/add', address.add);
+app.put('/customer/:customer/address/:id/edit', address.edit);
+app.delete('/customer/address/:id', address.remove);
+app.get('/customer/:customer/addresses', address.getByCustomer);
+app.get('/customer/address/:id', address.getOne);
 
 
 // catch 404 and forward to error handler
