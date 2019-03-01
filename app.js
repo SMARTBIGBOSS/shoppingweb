@@ -30,6 +30,7 @@ const catalogue = require('./routes/catalogue');
 const product = require('./routes/product');
 const uploadImage = require('./routes/upload_image');
 const address = require('./routes/address');
+const classification = require('./routes/classification');
 const cookiekey = require('./configuration/secertkey_config');
 const auth = require('./middleware/auth');
 
@@ -70,6 +71,13 @@ app.use("*", function (req, res, next) {
 app.post('/register/admin', admin.signUp);
 app.post('/login/admin', admin.signIn);
 app.post('/logout/admin', admin.signout);
+app.get('/admin/classification/type/:type', auth.authAdmin, classification.getClassificationByType);
+app.get('/admin/classification/type_active/:type', classification.getActiveClassificationByType);
+app.get('/admin/classification/title/:title', auth.authAdmin, classification.getClassificationByTitle);
+app.get('/admin/classification/title_active/:title', classification.getActiveClassificationByTitle);
+app.post('/admin/:admin/classification', auth.authAdmin, classification.add);
+app.put('/admin/:admin/classification/:id', auth.authAdmin, classification.edit);
+app.delete('/admin/classification/:id', auth.authAdmin, classification.remove);
 
 // seller APIs
 app.post('/register/seller', seller.signUp);
