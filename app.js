@@ -71,6 +71,9 @@ app.use("*", function (req, res, next) {
 app.post('/register/admin', admin.signUp);
 app.post('/login/admin', admin.signIn);
 app.post('/logout/admin', admin.signout);
+app.get('/admin/:admin', admin.findOne);
+app.put('/admin/:admin/editwithpass', admin.editWithPassword);
+app.put('/admin/:admin/editwithoutpass', admin.editWithoutPassword);
 app.get('/admin/classification/type/:type', auth.authAdmin, classification.getClassificationByType);
 app.get('/admin/classification/type_active/:type', classification.getActiveClassificationByType);
 app.get('/admin/classification/title/:title', auth.authAdmin, classification.getClassificationByTitle);

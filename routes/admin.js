@@ -20,7 +20,8 @@ router.signUp = (req, res) => {
         res.json({ message : 'Username and Password must be Required!' });
     } else if (!checkEmail.test(admin.username)){
         res.json({ message : 'Email address format error!' });
-    } else if((8 > req.body.password.length) || (req.body.password.length > 16)) {
+    }
+    else if((8 > req.body.password.length) || (req.body.password.length > 16)) {
         res.json({ message : 'Password must be Between 8 Characters and 16 Characters!' });
     } else if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W])[a-zA-Z\d\W?$]{8,16}/.test(req.body.password))){
         res.json({ message: 'Password must has Number, Lowercase Letter, Capital Letter and Special Character!'});
@@ -33,7 +34,8 @@ router.signUp = (req, res) => {
     //     res.json({ errmsg: 'Password must has Capital Letters!'});
     // } else if(!(/\W/.test(req.body.password))) {
     //     res.json({ errmsg: 'Password must has Spacial Characters!'});
-    } else if(admin.name.length > 30) {
+    }
+    else if(admin.name.length > 30) {
         res.json({message: 'Name must be less than 30 letters'});
     } else {
         Admin.findOne({ username: req.body.username }, function (err, administrator) {
@@ -104,6 +106,84 @@ router.signout = (req, res) => {
         res.json({ message: 'Please sign in first' });
     }
 // console.log(req.headers);
+};
+
+router.editWithPassword = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    let checkEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+
+    if(req.body.username == null || req.body.password == null || req.body.name == null) {
+        res.json({ message : 'Username and Password must be Required!' });
+    } else if (!checkEmail.test(req.body.username)){
+        res.json({ message : 'Email address format error!' });
+    } else if((8 > req.body.password.length) || (req.body.password.length > 16)) {
+        res.json({ errmsg : 'Password must be Between 8 Characters and 16 Characters!', data: null });
+    } else if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W])[a-zA-Z\d\W?$]{8,16}/.test(req.body.password))) {
+        res.json({errmsg: 'Password must has Number, Lowercase Letter, Capital Letter and Special Character!', data: null});
+    } else {
+        let admin = new Admin({
+            username: req.body.username,
+            password: bcrypt.hashSync(req.body.password),
+            name: req.body.name,
+        });
+        // console.log(seller);
+
+        Admin.update({"_id": req.params.admin},
+            {   username: admin.username,
+                password: admin.password,
+                name: admin.name
+            },
+            function (err, admin) {
+                if (err) {
+                    res.json({message: 'Seller not edited', data: null});
+                } else {
+                    res.json({message: 'Seller successfully edited', data: admin});
+                }
+            });
+    }
+};
+
+router.editWithoutPassword = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    let checkEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/;
+
+    if(req.body.username == null || req.body.password == null || req.body.name == null) {
+        res.json({ message : 'Username and Password must be Required!' });
+    } else if (!checkEmail.test(req.body.username)){
+        res.json({ message : 'Email address format error!' });
+    } else {
+        let admin = new Admin({
+            username: req.body.username,
+            name: req.body.name,
+        });
+        // console.log(seller);
+
+        Admin.update({"_id": req.params.admin},
+            {   username: admin.username,
+                name: admin.name
+            },
+            function (err, admin) {
+                if (err) {
+                    res.json({message: 'Seller not edited', data: null});
+                } else {
+                    res.json({message: 'Seller successfully edited', data: admin});
+                }
+            });
+    }
+};
+
+router.findOne = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    Admin.findById(req.params.admin, function(err, admin) {
+        if (err) {
+            res.json({message: 'Administrator not found', data: null});
+        } else {
+            res.json({data: admin});
+        }
+    });
 };
 
 module.exports = router;
