@@ -1,4 +1,7 @@
 let Product = require('../models/products');
+let Seller = require('../models/sellers');
+let Classification = require('../models/classification');
+let Catalogues = require('../models/catalogues');
 let express = require('express');
 let router = express.Router();
 
@@ -167,7 +170,11 @@ router.remove = (req, res) => {
 router.getByRegion = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    Product.find({seller_id: req.params.seller, class_region_id: req.params.region}, function(err, product){
+    let opts = [
+        {path: 'seller_id', model: Seller, select: {name: 1}}
+    ];
+
+    Product.find({seller_id: req.params.seller, class_region_id: req.params.region}).populate(opts).exec(function(err, product){
         if (err){
             res.json({message: 'Region not found', data: null});
         } else {
@@ -179,7 +186,11 @@ router.getByRegion = (req, res) => {
 router.getByType = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    Product.find({seller_id: req.params.seller, class_type_id: req.params.type}, function(err, product){
+    let opts = [
+        {path: 'seller_id', model: Seller, select: {name: 1}}
+    ];
+
+    Product.find({seller_id: req.params.seller, class_type_id: req.params.type}).populate(opts).exec(function(err, product){
         if (err){
             res.json({message: 'Type not found', data: null});
         } else {
@@ -191,7 +202,14 @@ router.getByType = (req, res) => {
 router.getByCatalogue = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    Product.find({seller_id: req.params.seller, catalogue_id: req.params.catalogue}, function(err, product){
+    let opts = [
+        {path: 'seller_id', model: Seller, select: {name: 1}},
+        {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
+        {path: 'class_region_id', model: Classification, select: {subtitle: 1}},
+        {path: 'catalogue_id', model: Catalogues, select: {name: 1}}
+    ];
+
+    Product.find({seller_id: req.params.seller, catalogue_id: req.params.catalogue}).populate(opts).exec(function(err, product){
         if (err){
             res.json({message: 'Product not found', data: null});
         } else {
@@ -211,6 +229,25 @@ router.getOne = (req, res) => {
         }
     });
 };
+
+// router.getProduct = (req, res) => {
+//     // res.setHeader('Content-Type', 'application/json');
+//
+//     let opts = [
+//         {path: 'seller_id', model: Seller, select: {name: 1}},
+//         {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
+//         {path: 'class_region_id', model: Classification, select: {subtitle: 1}},
+//         {path: 'catalogue_id', model: Catalogues, select: {name: 1}}
+//     ];
+//
+//     Product.findById(req.params.id).populate(opts).exec(function(err, product){
+//         if (err){
+//             res.send(err);
+//         } else {
+//             res.json({data: product});
+//         }
+//     });
+// };
 
 
 module.exports = router;

@@ -71,7 +71,7 @@ router.getAll = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     Catalogue.find({seller_id: req.params.seller}, function(err, catalogue){
-        if (err){
+        if (!catalogue){
             res.json({message: 'Catalogue not found', data: null});
         } else {
             res.json({data: catalogue});

@@ -83,9 +83,9 @@ app.delete('/admin/classification/:id', auth.authAdmin, classification.remove);
 app.post('/register/seller', seller.signUp);
 app.post('/login/seller', seller.signIn);
 app.get('/active/seller', seller.active);
-app.get('/seller/:seller', auth.authSeller, seller.getOne);
+app.get('/seller/:seller', auth.authSeller, seller.getOne);//auth.authSeller,
 app.get('/:seller/catalogues', auth.authSeller, catalogue.getAll);
-app.get('/:seller/catalogue/:id', auth.authSeller, catalogue.getOne);
+app.get('/:seller/catalogue/:id', auth.authSeller, catalogue.getOne);//auth.authSeller,
 app.put('/:seller/catalogue/edit/:id', auth.authSeller, catalogue.edit);
 app.post('/:seller/catalogue/add', auth.authSeller, catalogue.create);
 app.delete('/catalogue/remove/:id', catalogue.remove);
@@ -97,6 +97,7 @@ app.delete('/product/delete/:id', product.remove);
 //app.get('/:seller/product/region/:region', product.getByRegion);
 app.get('/:seller/product/:catalogue', auth.authSeller, product.getByCatalogue);
 app.get('/product/:id', product.getOne);
+// app.get('/products/:id', product.getProduct);
 app.post('/:seller/product/:id/productDetail', auth.authSeller, uploadImage.productDetail);
 app.post('/:seller/product/:id/productBody', auth.authSeller, uploadImage.productBody);
 app.post('/seller/:seller/uploadLogo', auth.authSeller, uploadImage.sellerLogo);
