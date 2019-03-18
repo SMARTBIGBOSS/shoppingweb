@@ -1,23 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/routes/upload_image.js" description="if (err) {" line="202" />
+    <bookmark url="file://$PROJECT_DIR$/routes/upload_image.js" description="if (err) {" line="203" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="af164306-6aea-4f60-9ce7-ea8a2a1b31c4" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration/secertkey_config.js" beforeDir="false" afterPath="$PROJECT_DIR$/configuration/secertkey_config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/images.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/images.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/logos.js" beforeDir="false" afterPath="$PROJECT_DIR$/models/logos.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/catalogue.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/catalogue.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/classification.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/classification.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/customer.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/customer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/product.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/product.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/seller.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/seller.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/upload_image.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/upload_image.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/customers/5c561397a42c410950ff69fa/account/1550758615298.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/sellers/5c6339630516b0316085e10f/account/1550758664923.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/sellers/5c6339630516b0316085e10f/products/5c673fb18433d11c9839c573/body/1550758950704.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/sellers/5c6339630516b0316085e10f/products/5c673fb18433d11c9839c573/details/1550759192900.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/sellers/5c6339630516b0316085e10f/products/5c673fb18433d11c9839c573/details/1550759192903.jpg" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -34,80 +30,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="103" column="26" lean-forward="true" selection-start-line="103" selection-start-column="18" selection-end-line="103" selection-end-column="26" />
+            <state relative-caret-position="43">
+              <caret line="89" column="24" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/product.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="203" selection-start-line="203" selection-end-line="203" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/seller.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="213" column="59" selection-start-line="213" selection-start-column="38" selection-end-line="213" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/routes/upload_image.js">
+        <entry file="file://$PROJECT_DIR$/routes/customer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="209" column="43" lean-forward="true" selection-start-line="209" selection-start-column="43" selection-end-line="209" selection-end-column="43" />
-              <folding>
-                <element signature="e#712#738#0" />
-                <element signature="e#4254#4353#0" />
-                <element signature="e#7141#9434#0" />
-                <element signature="e#7151#7223#0" />
-                <element signature="e#9473#12562#0" />
-                <element signature="e#9480#9556#0" />
-                <element signature="e#10024#10161#0" />
-                <element signature="e#10273#10599#0" />
-                <element signature="e#10640#10835#0" />
-                <element signature="e#10863#10967#0" />
-                <element signature="e#12900#12944#0" />
-                <element signature="e#14452#14484#0" />
-                <element signature="e#14845#14889#0" />
-                <element signature="e#15622#15664#0" />
-                <element signature="e#16304#16350#0" />
-                <element signature="e#17053#17091#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/products.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="8" column="17" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/images.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="38" selection-start-line="6" selection-end-line="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/logos.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/middleware/auth.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/configuration/secertkey_config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+            <state relative-caret-position="194">
+              <caret line="208" column="63" selection-start-line="208" selection-start-column="63" selection-end-line="208" selection-end-column="63" />
             </state>
           </provider>
         </entry>
@@ -124,6 +75,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>user</find>
+      <find>og</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -144,22 +96,22 @@
         <option value="$PROJECT_DIR$/models/customers.js" />
         <option value="$PROJECT_DIR$/models/sellers.js" />
         <option value="$PROJECT_DIR$/middleware/auth.js" />
-        <option value="$PROJECT_DIR$/routes/customer.js" />
-        <option value="$PROJECT_DIR$/routes/seller.js" />
         <option value="$PROJECT_DIR$/models/addresses.js" />
         <option value="$PROJECT_DIR$/routes/address.js" />
         <option value="$PROJECT_DIR$/models/classification.js" />
-        <option value="$PROJECT_DIR$/routes/classification.js" />
-        <option value="$PROJECT_DIR$/routes/catalogue.js" />
-        <option value="$PROJECT_DIR$/routes/product.js" />
         <option value="$PROJECT_DIR$/models/administrators.js" />
         <option value="$PROJECT_DIR$/routes/admin.js" />
-        <option value="$PROJECT_DIR$/configuration/secertkey_config.js" />
-        <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/models/products.js" />
         <option value="$PROJECT_DIR$/models/images.js" />
         <option value="$PROJECT_DIR$/models/logos.js" />
+        <option value="$PROJECT_DIR$/configuration/secertkey_config.js" />
+        <option value="$PROJECT_DIR$/routes/classification.js" />
+        <option value="$PROJECT_DIR$/routes/catalogue.js" />
+        <option value="$PROJECT_DIR$/app.js" />
+        <option value="$PROJECT_DIR$/routes/seller.js" />
         <option value="$PROJECT_DIR$/routes/upload_image.js" />
+        <option value="$PROJECT_DIR$/routes/product.js" />
+        <option value="$PROJECT_DIR$/routes/customer.js" />
       </list>
     </option>
   </component>
@@ -170,8 +122,8 @@
     <auto-save>true</auto-save>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="942" />
-    <option name="y" value="25" />
+    <option name="x" value="838" />
+    <option name="y" value="67" />
     <option name="width" value="849" />
     <option name="height" value="738" />
   </component>
@@ -1054,24 +1006,32 @@
       <workItem from="1552386624717" duration="816000" />
       <workItem from="1552407060752" duration="2885000" />
       <workItem from="1552419412304" duration="5725000" />
-      <workItem from="1552489912911" duration="12921000" />
+      <workItem from="1552489912911" duration="13348000" />
+      <workItem from="1552516255247" duration="1940000" />
+      <workItem from="1552520677831" duration="3087000" />
+      <workItem from="1552558869024" duration="2177000" />
+      <workItem from="1552572439117" duration="8997000" />
+      <workItem from="1552640893949" duration="1230000" />
+      <workItem from="1552778709435" duration="1436000" />
+      <workItem from="1552819730938" duration="9465000" />
+      <workItem from="1552905662724" duration="5002000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="416185000" />
+    <option name="totallyTimeSpent" value="449946000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.20349762" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20190778" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3339254" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.37655416" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1079,20 +1039,20 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5150977" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.30373" />
       <window_info anchor="bottom" id="REST Client" order="11" weight="0.44937834" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20349762" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.4310019" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3285968" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3339254" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.18333334" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -1100,7 +1060,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.5150977" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.30373" />
       <window_info anchor="bottom" id="REST Client" order="11" weight="0.44937834" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -1176,13 +1136,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/catalogue.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="81" column="31" selection-start-line="81" selection-start-column="31" selection-end-line="81" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/sellers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1204,31 +1157,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/seller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="160" column="25" lean-forward="true" selection-start-line="160" selection-start-column="25" selection-end-line="160" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1445">
-          <caret line="85" column="33" selection-start-line="85" selection-start-column="33" selection-end-line="85" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/classification.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="16" selection-start-line="6" selection-start-column="16" selection-end-line="6" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/classification.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="93" column="2" selection-start-line="93" selection-start-column="2" selection-end-line="93" selection-end-column="2" />
         </state>
       </provider>
     </entry>
@@ -1249,6 +1181,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/images.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="38" selection-start-line="6" selection-end-line="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/products.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="17" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1190">
+          <caret line="70" column="11" selection-start-line="70" selection-end-line="71" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/middleware/auth.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -1256,10 +1209,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/customer.js">
+    <entry file="file://$PROJECT_DIR$/models/logos.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="181" column="24" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
+        <state relative-caret-position="102">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/classification.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="119" selection-start-line="119" selection-end-line="129" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/catalogue.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="92" lean-forward="true" selection-start-line="92" selection-end-line="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/configuration/secertkey_config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="68" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/nodemailer/lib/mime-node/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="253" column="4" selection-start-line="253" selection-start-column="4" selection-end-line="253" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/upload_image.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="418" lean-forward="true" selection-start-line="418" selection-end-line="418" />
+          <folding>
+            <element signature="e#568#685#0" />
+            <element signature="e#715#741#0" />
+            <element signature="e#1125#5475#0" />
+            <element signature="e#1132#1236#0" />
+            <element signature="e#1727#2186#0" />
+            <element signature="e#5513#9289#0" />
+            <element signature="e#9326#12391#0" />
+            <element signature="e#12430#15545#0" />
+            <element signature="n#!!block;n#deleteImage#0" />
+            <element signature="e#15947#16266#0" />
+            <element signature="e#16306#16621#0" />
+            <element signature="e#16663#16997#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="43">
+          <caret line="89" column="24" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1272,68 +1281,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/product.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="160" column="28" selection-start-line="160" selection-start-column="12" selection-end-line="160" selection-end-column="28" />
+        <state relative-caret-position="34">
+          <caret line="203" selection-start-line="203" selection-end-line="203" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/configuration/secertkey_config.js">
+    <entry file="file://$PROJECT_DIR$/routes/seller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="8" column="34" selection-start-line="8" selection-start-column="34" selection-end-line="8" selection-end-column="34" />
+        <state relative-caret-position="163">
+          <caret line="213" column="59" selection-start-line="213" selection-start-column="38" selection-end-line="213" selection-end-column="59" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
+    <entry file="file://$PROJECT_DIR$/routes/customer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="103" column="26" lean-forward="true" selection-start-line="103" selection-start-column="18" selection-end-line="103" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/images.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="38" selection-start-line="6" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/logos.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="27" selection-start-line="6" selection-start-column="27" selection-end-line="6" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/products.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="17" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/upload_image.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="209" column="43" lean-forward="true" selection-start-line="209" selection-start-column="43" selection-end-line="209" selection-end-column="43" />
-          <folding>
-            <element signature="e#712#738#0" />
-            <element signature="e#4254#4353#0" />
-            <element signature="e#7141#9434#0" />
-            <element signature="e#7151#7223#0" />
-            <element signature="e#9473#12562#0" />
-            <element signature="e#9480#9556#0" />
-            <element signature="e#10024#10161#0" />
-            <element signature="e#10273#10599#0" />
-            <element signature="e#10640#10835#0" />
-            <element signature="e#10863#10967#0" />
-            <element signature="e#12900#12944#0" />
-            <element signature="e#14452#14484#0" />
-            <element signature="e#14845#14889#0" />
-            <element signature="e#15622#15664#0" />
-            <element signature="e#16304#16350#0" />
-            <element signature="e#17053#17091#0" />
-          </folding>
+        <state relative-caret-position="194">
+          <caret line="208" column="63" selection-start-line="208" selection-start-column="63" selection-end-line="208" selection-end-column="63" />
         </state>
       </provider>
     </entry>

@@ -1,4 +1,5 @@
 let Seller = require('../models/sellers');
+let Logo = require('../models/logos');
 let bcrypt = require('bcrypt-nodejs');
 let express = require('express');
 let router = express.Router();
@@ -125,7 +126,6 @@ router.signIn = (req, res) => {
                     signed: true //Indicates if the cookie should be signed.
                 });
                 res.json({ message: 'Successfully Login', data: seller });
-                console.log(req.cookies)
             }
             else
                 res.json({ message: 'Username or Password Incorrect!', data: null });
@@ -207,7 +207,11 @@ router.editAccountWithoutPass = (req, res) => {
 router.getOne = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    Seller.findById(req.params.seller, function(err, seller){
+    let opts = [
+        {path: 'logo_id', model: Logo, select: {path: 1}}
+    ];
+
+    Seller.findById(req.params.seller).populate(opts).exec( function(err, seller){
         if (err){
             res.json({message: 'Seller not found', data: null});
         } else {

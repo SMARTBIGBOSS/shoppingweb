@@ -36,7 +36,7 @@ const s3 = new aws.S3();
 
 
 router.productDetail = (req, res) => {
-
+    res.setHeader('Content-Type', 'multipart/form-data');
     // let detailDir = './uploads/sellers/' + req.params.seller + '/products/' + req.params.id + '/details';
     // buildFolder.buildFolderSync(detailDir);
     // const storage = multer.diskStorage({
@@ -58,7 +58,7 @@ router.productDetail = (req, res) => {
                 } else {
                     for (let i = 0; i < image.key.length; i++) {
                         let key = image.key[i];
-                        deleteImage(key);
+                        // deleteImage(key);
                     }
                 }
             });
@@ -112,14 +112,14 @@ router.productDetail = (req, res) => {
                 if (err) {
                     // res.send({ message: 'Image not uploaded',file : null});
                     // console.log('Image not uploaded');
-                    return res.status(500).send({ message: 'Image not uploaded',file : null});
+                    return res.status(500).send({ message: 'Image not uploaded',data : null});
                 } else {
                     // res.send({message: 'Image Uploaded!', file: req.file});
                     // console.log('Image Uploaded');
                     // return res.status(200).send();
                     Image.findOne({owner: images.owner}, function (err, imgs) {
                         if (err) {
-                            return res.status(500).send();
+                            return res.status(500).send({message: 'Image not found', data: null});
                             // res.send({message: 'Image not found', file: null});
                             // console.log('Image not uploaded');
                         } else {
@@ -146,6 +146,7 @@ router.productDetail = (req, res) => {
 };
 
 router.productBody = (req, res) => {
+    res.setHeader('Content-Type', 'multipart/form-data');
 
     // let bodyDir = './uploads/sellers/' + req.params.seller + '/products/' + req.params.id + '/body';
     // buildFolder.buildFolderSync(bodyDir);
@@ -167,7 +168,7 @@ router.productBody = (req, res) => {
                     return;
                 } else {
                     let key = image.key[0];
-                    deleteImage(key);
+                    // deleteImage(key);
                 }
             });
         }
@@ -197,7 +198,7 @@ router.productBody = (req, res) => {
         storage: storage,
         limits: {fileSize:5 * 1024 * 1024},
         fileFilter: fileFilter
-    }).single('productBody');
+    }).array('productBody');
 
     upload(req,res,(err) => {
         if (err) {
@@ -212,14 +213,14 @@ router.productBody = (req, res) => {
                 if(err) {
                     // res.send({ message: 'Image not uploaded',file : null});
                     // console.log('Image not uploaded');
-                    return res.status(500).send();
+                    return res.status(500).send({ message: 'Image not uploaded',data : null});
                 } else {
                     // res.send({message: 'Image Uploaded!', file: req.file});
                     // console.log('Image Uploaded');
                     // return res.status(200).send();
                     Image.findOne({path: req.file.path}, function (err, img) {
                         if (err) {
-                            return res.status(500).send();
+                            return res.status(500).send({message: 'Image not found', data: null});
                             // res.send({message: 'Image not found', file: null});
                             // console.log('Image not uploaded');
                         } else {
@@ -243,6 +244,7 @@ router.productBody = (req, res) => {
 };
 
 router.sellerLogo = (req, res) => {
+    res.setHeader('Content-Type', 'multipart/form-data');
 
     // let bodyDir = './uploads/sellers/' + req.params.seller + '/account/';
     // buildFolder.buildFolderSync(bodyDir);
@@ -260,7 +262,7 @@ router.sellerLogo = (req, res) => {
             return;
         } else {
             let key = logo.path;
-            deleteImage(key);
+            // deleteImage(key);
         }
     });
 
@@ -302,13 +304,13 @@ router.sellerLogo = (req, res) => {
             logo.save(function (err) {
                 if(err) {
                     // res.json({ message: 'Logo not uploaded',file : null});
-                    return res.status(500).send({ message: 'Logo not uploaded',file : null});
+                    return res.status(500).send({ message: 'Logo not uploaded',data : null});
                 } else {
                     // res.json({message: 'Image Uploaded!', file: req.file});
                     // return res.status(200).send();
                     Logo.findOne({path: logo.path}, function (err, img) {
                         if (err) {
-                            return res.json({message: 'Logo not found', file: null});
+                            return res.json({message: 'Logo not found', data: null});
                         } else {
                             Seller.updateOne({"_id": req.params.seller},
                                 {logo_id: img._id},
@@ -328,6 +330,7 @@ router.sellerLogo = (req, res) => {
 };
 
 router.customerLogo = (req, res) => {
+    res.setHeader('Content-Type', 'multipart/form-data');
 
     // let bodyDir = './uploads/customers/' + req.params.customer + '/account/';
     // buildFolder.buildFolderSync(bodyDir);
@@ -342,10 +345,11 @@ router.customerLogo = (req, res) => {
     let dir = 'customers/' + req.params.customer + '/account/';
     Logo.findOneAndRemove({owner: req.params.customer}, function (err, logo) {
         if (!logo) {
+            console.log('No logo')
             return;
         } else {
             let key = logo.path;
-            deleteImage(key);
+            // deleteImage(key);
         }
     });
 
@@ -388,13 +392,13 @@ router.customerLogo = (req, res) => {
             logo.save(function (err) {
                 if(err) {
                     // res.json({ message: 'Logo not uploaded',file : null});
-                    return res.status(500).send();
+                    return res.status(500).send({ message: 'Logo not uploaded',data : null});
                 } else {
                     // res.json({message: 'Image Uploaded!', file: req.file});
                     // return res.status(200).send();
                     Logo.findOne({path: logo.path}, function (err, img) {
                         if (err) {
-                            return res.json({message: 'Logo not found', file: null});
+                            return res.json({message: 'Logo not found', data: null});
                         } else {
                             Customer.updateOne({"_id": req.params.customer},
                                 {logo_id: img._id},
@@ -416,168 +420,53 @@ router.customerLogo = (req, res) => {
 function deleteImage (key){
     let params = {
         Bucket: conf.AwS_BUCKET,
-        Delete: {Objects: [{Key: key}]}
+        Key: key
     };
-    s3.deleteObjects(params, function (err, data) {
+    s3.deleteObject(params, function (err, data) {
                 if (err) {
-                    // console.log('failed');
+                    console.log('failed');
                 } else {
-                    // console.log('delete');
+                    console.log(data);
                     return data;
                 }
             });
 };
 
-// router.loadCustomerLogo = (req, res) => {
-//     res.setHeader('Content-Type', 'application/json');
-//
-//     Customer.findById(req.params.customer, function (err, customer) {
-//         if (err) {
-//             res.json({message: 'Customer not existed', data: null});
-//         } else {
-//             if (customer.logo_id != null) {
-//                 Logo.findById(customer.logo_id, function (err, logo) {
-//                     if (err) {
-//                         res.json({message: 'Logo not existed', data: null});
-//                     } else {
-//                         let key = logo.path;
-//                         let options = {
-//                             Bucket: conf.AwS_BUCKET,
-//                             Key: key,
-//                         };
-//                         var file = fs.createWriteStream('./upload/');
-//                         // s3.getObject(options, function (err, data) {
-//                         //     if(!err) {
-//                         //         const body = Buffer.from(data.Body);
-//                         //         res.write(body,'binary')
-//                         //         res.end();
-//                         //     }
-//                         // });
-//                         res.writeHead(200,{'Content-Type' : 'image/png'});
-//                         s3.getObject(options) .createReadStream()
-//                             .on('error', function(err){
-//                                 res.status(500).json({error:"Error -> " + err});
-//                             }).pipe(res);
-//                     }
-//                 });
-//             }
-//         }
-//     });
-// };
+router.getCustomerLogo = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
 
-// readImg = function(path,res){
-//     fs.readFile(path,'binary',function(err,file){
-//         if(err){
-//             // console.log(err);
-//             // return ;
-//             res.send({message: 'Read file failed'})
-//         }else{
-//             res.writeHead(200,{'Content-Type' : 'image/jpeg'});
-//
-//             res.write(file,'binary');
-//             res.end();
-//         }
-//     });
-// };
+    Logo.findOne({owner: req.params.customer}, function (err, logo) {
+        if (!logo) {
+            res.json({message: 'Get logo path failed', data: null});
+        }else {
+            res.json({message: 'Get logo path', data: logo.path});
+        }
+    })
+};
 
+router.getSellerLogo = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
 
-// router.loadCustomerLogo = (req, res) => {
-//     res.writeHead(200,{'Content-Type' : 'image/jpeg'});
-//
-//     let imgId = '';
-//     Customer.findById(req.params.customer, function(err, user){
-//         if (err) {
-//             res.json({message: 'Customer not found'});
-//         } else {
-//             imgId = user.logo_id;
-//             // console.log(user.logo_id);
-//             // console.log(imgId);
-//             Logo.findById(imgId, function (err, logo) {
-//                 if (!logo) {
-//                     res.json({message: 'Logo not found'});
-//                 } else {
-//                     if(req.url != '/favicon.ico'){
-//                         readImg(logo.path, res);
-//                     }
-//                 }
-//             });
-//         }
-//     });
-// };
+    Logo.findOne({owner: req.params.seller}, function (err, logo) {
+        if (err) {
+            res.json({message: 'Get logo path failed', data: null});
+        }else {
+            res.json({message: 'Get logo path', data: logo.path});
+        }
+    })
+};
 
-// router.loadSellerLogo = (req, res) => {
-//     res.writeHead(200,{'Content-Type' : 'image/jpeg'});
-//
-//     let imgId = '';
-//     Seller.findById(req.params.seller, function(err, user){
-//         if (err) {
-//             res.json({message: 'Seller not found'});
-//         } else {
-//             imgId = user.logo_id;
-//             // console.log(imgId);
-//             Logo.findById(imgId, function (err, logo) {
-//                 if (!logo) {
-//                     res.json({message: 'Logo not found'});
-//                 } else {
-//                     if(req.url != '/favicon.ico'){
-//                         readImg(logo.path, res);
-//                     }
-//                 }
-//             });
-//         }
-//     });
-// };
+router.getProductImage = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
 
-// router.loadProductBodyImg = (req, res) => {
-//     res.writeHead(200,{'Content-Type' : 'image/jpeg'});
-//
-//     let imgId = '';
-//     Product.findById(req.params.id, function(err, product){
-//         if (err) {
-//             // res.json({message: 'Product not found'});
-//         } else {
-//             imgId = product.body_id;
-//             // console.log(imgId);
-//             Image.findById(imgId, function (err, image) {
-//                 if (!image) {
-//                     // res.json({message: 'Logo not found'});
-//                 } else {
-//                     console.log(image.path);
-//                     if(req.url != '/favicon.ico'){
-//                         readImg(image.path[0], res);
-//                     }
-//                 }
-//             });
-//         }
-//     });
-// };
+    Image.findById(req.params.id, function (err, img) {
+        if (err) {
+            res.json({message: 'Get product detail image path failed', data: null});
+        }else {
+            res.json({message: 'Get product detail image path', data: img.path});
+        }
+    })
+};
 
-
-// router.getMainImg = (req, res) => {
-//     // res.writeHead(200,{'Content-Type' : 'image/jpeg'});
-//     // res.setHeader('Content-Type', 'application/json');
-//
-//     let imgId = '';
-//     Product.findById(req.params.id, function(err, product){
-//         if (err) {
-//             // res.json({message: 'Product not found'});
-//         } else {
-//             imgId = product.detail_id;
-//             // console.log(imgId);
-//             Image.findById(imgId, function (err, image) {
-//                 if (!image) {
-//                     res.json({message: 'Image not found'});
-//                 } else {
-//                     // res.json({data: image.path[0]});
-//                     if (image.path != null) {
-//                         if(req.url != '/favicon.ico'){
-//                             readImg(image.path[0], res);
-//                         }
-//                     }
-//                 }
-//             });
-//         }
-//     });
-// };
 
 module.exports = router;

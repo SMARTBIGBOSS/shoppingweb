@@ -2,6 +2,7 @@ let Product = require('../models/products');
 let Seller = require('../models/sellers');
 let Classification = require('../models/classification');
 let Catalogues = require('../models/catalogues');
+let Image = require('../models/images')
 let express = require('express');
 let router = express.Router();
 
@@ -200,9 +201,10 @@ router.getByType = (req, res) => {
 };
 
 router.getByCatalogue = (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
 
     let opts = [
+        {path: 'body_id', model: Image, select: {path: 1}},
+        {path: 'detail_id', model: Image, select: {path: 1}},
         {path: 'seller_id', model: Seller, select: {name: 1}},
         {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
         {path: 'class_region_id', model: Classification, select: {subtitle: 1}},

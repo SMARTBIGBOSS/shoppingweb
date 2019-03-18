@@ -78,6 +78,7 @@ app.get('/admin/:admin/classification/type/:type', auth.authAdmin, classificatio
 app.get('/admin/classification/type_active/:type', classification.getActiveClassificationByType);
 app.get('/admin/:admin/classification/title/:title', auth.authAdmin, classification.getClassificationByTitle);
 app.get('/admin/classification/title_active/:title', classification.getActiveClassificationByTitle);
+// app.get('classification/:id', classification.getAClassification);
 app.post('/admin/:admin/classification', auth.authAdmin, classification.add);
 app.put('/admin/:admin/classification/:id', auth.authAdmin, classification.edit);
 app.delete('/admin/:admin/classification/:id', auth.authAdmin, classification.remove);
@@ -88,7 +89,7 @@ app.post('/login/seller', seller.signIn);
 app.get('/active/seller', seller.active);
 app.get('/seller/:seller', auth.authSeller, seller.getOne);//auth.authSeller,
 app.get('/:seller/catalogues', auth.authSeller, catalogue.getAll);
-app.get('/:seller/catalogue/:id', auth.authSeller, catalogue.getOne);//auth.authSeller,
+// app.get('/seller/catalogue/:id', auth.authSeller, catalogue.getOne);//auth.authSeller,
 app.put('/:seller/catalogue/edit/:id', auth.authSeller, catalogue.edit);
 app.post('/:seller/catalogue/add', auth.authSeller, catalogue.create);
 app.delete('/catalogue/remove/:id', catalogue.remove);
@@ -101,14 +102,14 @@ app.delete('/product/delete/:id', product.remove);
 app.get('/:seller/product/:catalogue', auth.authSeller, product.getByCatalogue);
 app.get('/product/:id', product.getOne);
 // app.get('/products/:id', product.getProduct);
-app.post('/:seller/product/:id/productDetail', auth.authSeller, uploadImage.productDetail);
-app.post('/:seller/product/:id/productBody', auth.authSeller, uploadImage.productBody);
-app.post('/seller/:seller/uploadLogo', auth.authSeller, uploadImage.sellerLogo);
+app.put('/:seller/product/:id/productDetail', auth.authSeller, uploadImage.productDetail);
+app.put('/:seller/product/:id/productBody', auth.authSeller, uploadImage.productBody);
+app.put('/seller/:seller/uploadLogo', auth.authSeller, uploadImage.sellerLogo);
 app.put('/seller/:seller/edit', auth.authSeller, seller.editAccount);
 app.put('/seller/:seller/editwithoutpass', auth.authSeller, seller.editAccountWithoutPass);
-//app.get('/seller/:seller/logo', auth.authSeller, uploadImage.loadSellerLogo);
+app.get('/seller/:seller/logo', auth.authSeller, uploadImage.getSellerLogo);
 //app.get('/seller/:seller/product/:id/body', auth.authSeller, uploadImage.loadProductBodyImg);
-//app.get('/seller/product/:id/mainImg', uploadImage.getMainImg);
+app.get('/seller/product/:id/Img', uploadImage.getProductImage);
 
 
 // customer APIs
@@ -116,10 +117,10 @@ app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);
 app.get('/active/customer', customer.active);
 app.get('/customer/:customer', auth.authCustomer, customer.getOne);
-app.post('/customer/:customer/uploadLogo', auth.authCustomer, uploadImage.customerLogo);
+app.put('/customer/:customer/uploadLogo', auth.authCustomer, uploadImage.customerLogo);
 app.put('/customer/:customer/edit', auth.authCustomer, customer.editAccount);
 app.put('/customer/:customer/editwithoutpass', auth.authCustomer, customer.editAccountWithoutPass);
-//app.get('/customer/:customer/logo', auth.authCustomer, uploadImage.loadCustomerLogo);
+app.get('/customer/:customer/logo', auth.authCustomer, uploadImage.getCustomerLogo);
 app.post('/customer/:customer/address/add', address.add);
 app.put('/customer/:customer/address/:id/edit', address.edit);
 app.delete('/customer/address/:id', address.remove);

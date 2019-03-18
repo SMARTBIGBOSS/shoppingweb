@@ -79,17 +79,17 @@ router.getAll = (req, res) => {
     });
 };
 
-router.getOne = (req, res) => {
-    res.setHeader('Content-Type', 'application/json');
-
-    Catalogue.findById(req.params.id, function(err, catalogue){
-        if (err){
-            res.json({message: 'Catalogue not found', data: null});
-        } else {
-            res.json({data: catalogue});
-        }
-    });
-}
+// router.getOne = (req, res) => {
+//     res.setHeader('Content-Type', 'application/json');
+//
+//     Catalogue.findById(req.params.id, function(err, catalogue){
+//         if (err){
+//             res.json({message: 'Catalogue not found', data: null});
+//         } else {
+//             res.json({data: catalogue});
+//         }
+//     });
+// };
 
 
 module.exports = router;

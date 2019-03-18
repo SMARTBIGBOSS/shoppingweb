@@ -203,7 +203,10 @@ router.editAccountWithoutPass = (req, res) => {
 router.getOne = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    Customer.findById(req.params.customer, function(err, customer){
+    let opts = [
+        {path: 'logo_id', model: Logo, select: {path: 1}}
+    ];
+    Customer.findById(req.params.customer).populate(opts).exec( function(err, customer){
         if (err){
             res.json({message: 'Product not found', data: null});
         } else {

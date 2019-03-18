@@ -117,4 +117,16 @@ router.getActiveClassificationByTitle = (req, res) => {
     });
 };
 
+router.getAClassification = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    Classification.findById(req.params.id, function (err, classification) {
+        if (!classification) {
+            res.json({message: 'Classification not found', data: null})
+        } else {
+            res.json({message: 'Classification exist', data: classification})
+        }
+    })
+};
+
 module.exports = router;
