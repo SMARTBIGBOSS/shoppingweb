@@ -9,14 +9,14 @@ let expect = chai.expect;
 chai.use( things);
 chai.use(chaiHttp);
 
-let mongodbUri = 'mongodb://shoppingdb:shoppingdb100@ds125331.mlab.com:25331/shoppingdb';
-
-mongoose.connect(mongodbUri,{useNewUrlParser:true},function(err){
-    if(err)
-        console.log('Connection Error:' + err);
-    else
-        console.log('Connection to database success!');
-});
+// let mongodbUri = 'mongodb://shoppingdb:shoppingdb100@ds125331.mlab.com:25331/shoppingdb';
+//
+// mongoose.connect(mongodbUri,{useNewUrlParser:true},function(err){
+//     if(err)
+//         console.log('Connection Error:' + err);
+//     else
+//         console.log('Connection to database success!');
+// });
 let db = mongoose.connection;
 let server = null ; // CHANGED
 let datastore = null ; // CHANGED
