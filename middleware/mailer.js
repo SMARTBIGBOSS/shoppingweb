@@ -10,8 +10,8 @@ function send (receiver, role, code) {
             port: 465,// secure:true for port 465, secure:false for port 587
             secure: true,
             auth: {
-                user: 'overseasshopping@foxmail.com',//overseasshopping@foxmail.com
-                pass: 'tdojgwftdeyycbch'//kviuslgnmnrtbjib
+                user: 'USER@foxmail.com',//overseasshopping@foxmail.com
+                pass: 'PASSWORD'//kviuslgnmnrtbjib
             },
             tls: {
                 rejectUnauthorized: false
