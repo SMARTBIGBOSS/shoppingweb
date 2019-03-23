@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:8080'
-}))
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

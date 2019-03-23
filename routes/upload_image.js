@@ -131,7 +131,7 @@ router.productDetail = (req, res) => {
                                         // console.log('Image not uploaded');
                                         // return res.status(500).send();
                                     } else {
-                                        return res.send({message: 'Image Uploaded!', data: imgs, files: req.files});
+                                        return res.send({message: 'Images Uploaded!', data: imgs, files: req.files});
                                         // console.log('Image Uploaded');
                                         // return res.status(200).send();
 

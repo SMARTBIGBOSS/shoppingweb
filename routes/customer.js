@@ -1,4 +1,5 @@
 let Customer = require('../models/customers');
+let Logo = require('../models/logos');
 let bcrypt = require('bcrypt-nodejs');
 let express = require('express');
 let router = express.Router();
@@ -208,7 +209,7 @@ router.getOne = (req, res) => {
     ];
     Customer.findById(req.params.customer).populate(opts).exec( function(err, customer){
         if (err){
-            res.json({message: 'Product not found', data: null});
+            res.json({message: 'Customer not found', data: null});
         } else {
             res.json({data: customer});
         }
