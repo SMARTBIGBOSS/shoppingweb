@@ -8,9 +8,9 @@
   },
   "scripts": {
     "start": "npm-run-all test server build",
-    "test": "cross-env NODE_ENV=test mocha --require babel-core/register test/customer_test.js --timeout 3000 --exit",
+    "test": "cross-env NODE_ENV=test mocha --require babel-core/register test/customer_test.js --timeout 5000 --exit",
     "server": "cross-env NODE_ENV=dev node lib/bin/www",
-    "coverage": "cross-env NODE_ENV=test nyc mocha test/customer_test.js --timeout 3000 --exit",
+    "coverage": "cross-env NODE_ENV=test nyc mocha test/customer_test.js --timeout 5000 --exit",
     "build": "babel ./ --out-dir lib/ --ignore ./node_modules,./.babelrc,./package.json,./package-lock.json,./test --copy-files",
     "clean": "rimraf ./lib && mkdir lib",
     "postbuild": "npm run server",
