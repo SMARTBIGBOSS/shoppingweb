@@ -8,7 +8,7 @@
     },
   "scripts": {
     "start": "node ./bin/www",
-    "test": "cross-env NODE_ENV=test && mocha test/customer_test.js",
+    "test": "cross-env NODE_ENV=test && mocha test/customer_test.js"
   },
   "dependencies": {
     "aws-sdk": "^2.418.0",
