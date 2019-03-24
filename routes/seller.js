@@ -8,7 +8,7 @@ let SECRET = require('../configuration/secertkey_config');
 let mailer = require('../middleware/mailer');
 let crypto = require('crypto');
 
-encryptCode = (username) => {
+function encryptCode (username){
     let hmac = crypto.createHash('sha256', SECRET.ACTIVE_CODE);
     hmac.update(username);
     let code = hmac.digest('hex');

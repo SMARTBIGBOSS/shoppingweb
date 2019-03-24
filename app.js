@@ -114,7 +114,6 @@ app.get('/seller/:seller/logo', auth.authSeller, uploadImage.getSellerLogo);
 //app.get('/seller/:seller/product/:id/body', auth.authSeller, uploadImage.loadProductBodyImg);
 app.get('/seller/product/:id/Img', uploadImage.getProductImage);
 
-
 // customer APIs
 app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);

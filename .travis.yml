@@ -2,3 +2,7 @@ dist: trusty
 language: node_js
 node_js:
   - stable
+script:
+  - npm run coverage
+branches:
+  only: master

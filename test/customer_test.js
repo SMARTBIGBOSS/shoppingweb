@@ -8,7 +8,6 @@ let _ = require('lodash');
 let expect = chai.expect;
 chai.use( things);
 chai.use(chaiHttp);
-
 // let mongodbUri = 'mongodb://shoppingdb:shoppingdb100@ds125331.mlab.com:25331/shoppingdb';
 //
 // mongoose.connect(mongodbUri,{useNewUrlParser:true},function(err){
