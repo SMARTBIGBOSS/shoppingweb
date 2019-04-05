@@ -19,6 +19,8 @@ router.add = (req, res) => {
         res.json({ message: 'Name must be less than 30 characters'});
     } else if (req.body.price == null) {
         res.json({ message: 'Price is required'});
+    }else if (req.body.shipping_price == null) {
+        res.json({ message: 'Shipping price is required'});
     } else if (req.body.stock == null) {
         res.json({ message: 'Stock is required'});
     } else if (req.body.class_type_id == null || req.body.class_region_id == null) {
@@ -29,6 +31,7 @@ router.add = (req, res) => {
         product.name = req.body.name;
         product.seller_id = req.params.seller;
         product.price = req.body.price;
+        product.shipping_price = req.body.shipping_price;
         product.stock = req.body.stock;
         product.class_type_id = req.body.class_type_id;
         product.class_region_id = req.body.class_region_id;
@@ -130,7 +133,9 @@ router.edit = (req, res) => {
         res.json({ message: 'Name must be less than 30 characters'});
     } else if (req.body.price == null) {
         res.json({ message: 'Price is required'});
-    } else if (req.body.stock == null) {
+    } else if (req.body.shipping_price == null) {
+        res.json({ message: 'Shipping price is required'});
+    }else if (req.body.stock == null) {
         res.json({ message: 'Stock is required'});
     } else if (req.body.class_type_id == null || req.body.class_region_id == null) {
         res.json({ message: 'Classification is required'});
@@ -141,6 +146,7 @@ router.edit = (req, res) => {
             {seller_id: req.params.seller,
                 name: req.body.name,
                 price: req.body.price,
+                shipping_price: req.body.shipping_price,
                 stock: req.body.stock,
                 class_type_id: req.body.class_type_id,
                 class_region_id: req.body.class_region_id,
@@ -163,7 +169,18 @@ router.remove = (req, res) => {
         if (err) {
             res.json({message: 'Product remove failed', data: null});
         } else {
-            res.json({message: 'Product remove successfully', data: product});
+            if (product.body_id || product.detail_id) {
+                Image.deleteMany({owner: req.params.id}, function (err, image) {
+                    if (err) {
+                        res.json({message: 'Product images remove failed', data: null});
+                    } else {
+                        res.json({message: 'Product and Images remove successfully', product: product, images: image});
+                    }
+                });
+            } else {
+                res.json({message: 'Product remove successfully', data: product});
+            }
+
         }
     });
 };
@@ -223,7 +240,16 @@ router.getByCatalogue = (req, res) => {
 router.getOne = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
-    Product.findById(req.params.id, function(err, product){
+    let opts = [
+        {path: 'seller_id', model: Seller, select: {name: 1}},
+        {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
+        {path: 'class_region_id', model: Classification, select: {subtitle: 1}},
+        {path: 'catalogue_id', model: Catalogues, select: {name: 1}},
+        {path: 'body_id', model: Image, select: {path: 1}},
+        {path: 'detail_id', model: Image, select: {path: 1}},
+    ];
+
+    Product.findById(req.params.id).populate(opts).exec( function(err, product){
         if (err){
             res.json({message: 'Product not found', data: null});
         } else {
@@ -232,24 +258,26 @@ router.getOne = (req, res) => {
     });
 };
 
-// router.getProduct = (req, res) => {
-//     // res.setHeader('Content-Type', 'application/json');
-//
-//     let opts = [
-//         {path: 'seller_id', model: Seller, select: {name: 1}},
-//         {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
-//         {path: 'class_region_id', model: Classification, select: {subtitle: 1}},
-//         {path: 'catalogue_id', model: Catalogues, select: {name: 1}}
-//     ];
-//
-//     Product.findById(req.params.id).populate(opts).exec(function(err, product){
-//         if (err){
-//             res.send(err);
-//         } else {
-//             res.json({data: product});
-//         }
-//     });
-// };
+router.getAllProducts = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    let opts = [
+        {path: 'seller_id', model: Seller, select: {name: 1}},
+        {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
+        {path: 'class_region_id', model: Classification, select: {subtitle: 1}},
+        {path: 'catalogue_id', model: Catalogues, select: {name: 1}},
+        {path: 'body_id', model: Image, select: {path: 1}},
+        {path: 'detail_id', model: Image, select: {path: 1}},
+    ];
+
+    Product.find({isShow: true}).populate(opts).exec(function(err, product){
+        if (err){
+            res.send(err);
+        } else {
+            res.json({data: product});
+        }
+    });
+};
 
 
 module.exports = router;

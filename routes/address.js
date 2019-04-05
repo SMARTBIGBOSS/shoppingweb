@@ -9,8 +9,10 @@ router.add = (req, res) => {
 
     if (req.params.customer == null) {
         res.json({ message: 'Customer is unvalidated'});
-    } else if (req.body.consignee == null) {
-        res.json({ message: 'Consignee is required'});
+    } else if (req.body.firstName == null) {
+        res.json({ message: 'First name is required'});
+    } else if (req.body.lastName == null) {
+        res.json({ message: 'Last name is required'});
     } else if (req.body.address == null) {
         res.json({ message: 'Address is required'});
     } else if (req.body.city == null) {
@@ -19,19 +21,21 @@ router.add = (req, res) => {
         res.json({ message: 'Province/Territory/County/State is required'});
     } else if (req.body.country == null) {
         res.json({ message: 'Country is required'});
-    } else if (req.body.contact_num == null) {
-        res.json({ message: 'Contact number is required'});
+    } else if (req.body.contact_num == null || req.body.email === null) {
+        res.json({ message: 'Contact number and Email are required at lease one'});
     } else if (req.body.post_code == null) {
         res.json({ message: 'Post code is required'});
     } else {
-        address.customer_id = req.params.customer,
-        address.consignee = req.body.consignee,
-        address.address = req.body.address,
-        address.city = req.body.city,
-        address.province = req.body.province,
-        address.country = req.body.country,
-        address.contact_num = req.body.contact_num,
-        address.post_code = req.body.post_code,
+        address.customer_id = req.params.customer;
+        address.firstName = req.body.firstName;
+        address.lastName = req.body.lastName;
+        address.address = req.body.address;
+        address.city = req.body.city;
+        address.province = req.body.province;
+        address.country = req.body.country;
+        address.contact_num = req.body.contact_num;
+        address.email = req.body.email;
+        address.post_code = req.body.post_code;
         address.last_edit = Date.now();
 
         address.save(function (err) {
@@ -48,8 +52,10 @@ router.edit = (req, res) => {
 
     if (req.params.customer == null) {
         res.json({ message: 'Customer is unvalidated'});
-    } else if (req.body.consignee == null) {
-        res.json({ message: 'Consignee is required'});
+    } else if (req.body.firstName == null) {
+        res.json({ message: 'First name is required'});
+    } else if (req.body.lastName == null) {
+        res.json({ message: 'Last name is required'});
     } else if (req.body.address == null) {
         res.json({ message: 'Address is required'});
     } else if (req.body.city == null) {
@@ -58,19 +64,21 @@ router.edit = (req, res) => {
         res.json({ message: 'Province/Territory/County/State is required'});
     } else if (req.body.country == null) {
         res.json({ message: 'Country is required'});
-    } else if (req.body.contact_num == null) {
-        res.json({ message: 'Contact number is required'});
+    } else if (req.body.contact_num == null || req.body.email === null) {
+        res.json({ message: 'Contact number and Email are required at lease one'});
     } else if (req.body.post_code == null) {
         res.json({ message: 'Post code is required'});
     } else {
         Address.updateOne({_id: req.params.id},
             {customer_id: req.params.customer,
-                consignee: req.body.consignee,
+                firstName: req.body.firstName,
+                lastName: req.body.lastName,
                 address: req.body.address,
                 city: req.body.city,
                 province: req.body.province,
                 country: req.body.country,
                 contact_num: req.body.contact_num,
+                email: req.body.email,
                 post_code: req.body.post_code,
                 last_edit: Date.now()}, function (err, address) {
                 if (err) {

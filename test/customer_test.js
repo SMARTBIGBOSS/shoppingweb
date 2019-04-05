@@ -24,7 +24,7 @@ let password = bcrypt.hashSync(567);
 describe('Customer Test', function (){
     before(function (done) {
         delete require.cache[require.resolve('../bin/www')];
-        delete require.cache[require.resolve('../models/customers')];
+        delete require.cache[require.resolve('../models/classification')];
         datastore = require('../models/customers');
         server = require('../bin/www');
         // token = jwt.sign({_id: datastore._id}, 'sellerJwtKey');

@@ -105,6 +105,7 @@ router.productDetail = (req, res) => {
             // console.log(imagesPath);
             let images = new Image();
             images.owner = req.params.id;
+            images.type = 'Detail';
             images.key = imagesKey;
             images.path = imagesPath;
             images.register_date = Date.now();
@@ -117,8 +118,8 @@ router.productDetail = (req, res) => {
                     // res.send({message: 'Image Uploaded!', file: req.file});
                     // console.log('Image Uploaded');
                     // return res.status(200).send();
-                    Image.findOne({owner: images.owner}, function (err, imgs) {
-                        if (err) {
+                    Image.findOne({owner: images.owner, type: 'Detail'}, function (err, imgs) {
+                        if (!imgs) {
                             return res.status(500).send({message: 'Image not found', data: null});
                             // res.send({message: 'Image not found', file: null});
                             // console.log('Image not uploaded');
@@ -198,15 +199,17 @@ router.productBody = (req, res) => {
         storage: storage,
         limits: {fileSize:5 * 1024 * 1024},
         fileFilter: fileFilter
-    }).array('productBody');
+    }).single('productBody');
 
     upload(req,res,(err) => {
+        // console.log(req.file);
         if (err) {
             return res.send(err.message);
         } else {
             let image = new Image();
             image.owner = req.params.id;
             image.key = req.file.key;
+            image.type = 'Body';
             image.path = req.file.location;
             image.register_date = Date.now();
             image.save(function (err) {
@@ -218,7 +221,7 @@ router.productBody = (req, res) => {
                     // res.send({message: 'Image Uploaded!', file: req.file});
                     // console.log('Image Uploaded');
                     // return res.status(200).send();
-                    Image.findOne({path: req.file.path}, function (err, img) {
+                    Image.findOne({owner: image.owner, type: 'Body'}, function (err, img) {
                         if (err) {
                             return res.status(500).send({message: 'Image not found', data: null});
                             // res.send({message: 'Image not found', file: null});

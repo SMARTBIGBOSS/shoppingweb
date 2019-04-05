@@ -4,6 +4,7 @@ let ProductSchema = new mongoose.Schema({
         seller_id: { type: String, required: true},
         name: { type: String, required: true, unique: true, maxlength: 100},
         price: {type: Number, required: true},
+        shipping_price: {type: Number, required: true},
         stock: {type: Number, required: true},
         body_id: {type: String, default: null},
         detail_id: {type: String, default: null},

@@ -31,6 +31,7 @@ const product = require('./routes/product');
 const uploadImage = require('./routes/upload_image');
 const address = require('./routes/address');
 const classification = require('./routes/classification');
+const transaction = require('./routes/transaction');
 const cookiekey = require('./configuration/secertkey_config');
 const auth = require('./middleware/auth');
 
@@ -104,7 +105,7 @@ app.delete('/product/delete/:id', product.remove);
 //app.get('/:seller/product/region/:region', product.getByRegion);
 app.get('/:seller/product/:catalogue', auth.authSeller, product.getByCatalogue);
 app.get('/product/:id', product.getOne);
-// app.get('/products/:id', product.getProduct);
+app.get('/products', product.getAllProducts);
 app.put('/:seller/product/:id/productDetail', auth.authSeller, uploadImage.productDetail);
 app.put('/:seller/product/:id/productBody', auth.authSeller, uploadImage.productBody);
 app.put('/seller/:seller/uploadLogo', auth.authSeller, uploadImage.sellerLogo);
@@ -128,7 +129,8 @@ app.put('/customer/:customer/address/:id/edit', address.edit);
 app.delete('/customer/address/:id', address.remove);
 app.get('/customer/:customer/addresses', address.getByCustomer);
 app.get('/customer/address/:id', address.getOne);
-
+app.post('/:customer/product/executepayment', auth.authCustomer, transaction.executepayment);
+// app.get('/success', transaction.excutePayment);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

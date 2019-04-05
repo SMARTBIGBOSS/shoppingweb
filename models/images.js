@@ -5,6 +5,7 @@ let mongoose = require('mongoose');
 let ImageSchema = new mongoose.Schema({
         path: { type: [String], required: true},
         key: { type: [String], required: true},
+        type: {type: String, required: true},
         owner: { type: String, required: true},
         register_date: Date
     },
