@@ -114,7 +114,7 @@ app.put('/seller/:seller/editwithoutpass', auth.authSeller, seller.editAccountWi
 app.get('/seller/:seller/logo', auth.authSeller, uploadImage.getSellerLogo);
 //app.get('/seller/:seller/product/:id/body', auth.authSeller, uploadImage.loadProductBodyImg);
 app.get('/seller/product/:id/Img', uploadImage.getProductImage);
-
+app.get('/:seller/orders', transaction.getTransactionBySeller);
 // customer APIs
 app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);
@@ -130,7 +130,7 @@ app.delete('/customer/address/:id', address.remove);
 app.get('/customer/:customer/addresses', address.getByCustomer);
 app.get('/customer/address/:id', address.getOne);
 app.post('/:customer/product/executepayment', auth.authCustomer, transaction.executepayment);
-// app.get('/success', transaction.excutePayment);
+app.get('/:customer/orders', transaction.getTransactionByCustomer);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

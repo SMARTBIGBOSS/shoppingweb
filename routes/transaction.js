@@ -1,8 +1,12 @@
-let Transacttion = require('../models/transactions');
-let express = require('express');
-let router = express.Router();
+let Transaction = require('../models/transactions');
+let Product = require('../models/products');
+let Image = require('../models/images');
 let paypal = require('paypal-rest-sdk');
 let config = require('../configuration/secertkey_config');
+let kdniao = require('kdniaosdk');
+let express = require('express');
+let router = express.Router();
+
 
 paypal.configure({
     mode: "sandbox",
@@ -29,9 +33,10 @@ router.executepayment = (req, res) => {
             console.log(error);
             throw error;
         } else {
-            // console.log(JSON.stringify(payment.transactions[0].item_list,null,5));
+            console.log(JSON.stringify(payment,null,5));
             // console.log(JSON.stringify(payment.transactions.item_list.shipping_phone_number,null,5));
-            let trans = new Transacttion({
+            let trans = new Transaction({
+                seller_id: payment.transactions[0].custom,
                 customer_id: req.params.customer,
                 firstName: payment.payer.payer_info.first_name,
                 lastName: payment.payer.payer_info.last_name,
@@ -41,7 +46,7 @@ router.executepayment = (req, res) => {
                 country_code: payment.payer.payer_info.shipping_address.country_code,
                 postal_code: payment.payer.payer_info.shipping_address.postal_code,
                 contact_num: payment.transactions[0].item_list.shipping_phone_number,
-                // email: payment.payer.payer_info.transactions.payee.email,
+                email: payment.transactions[0].payee.email,
                 product_id: payment.transactions[0].description,
                 product_name: payment.transactions[0].item_list.items[0].name,
                 product_price: parseInt(payment.transactions[0].item_list.items[0].price,10),
@@ -49,7 +54,7 @@ router.executepayment = (req, res) => {
                 shipping_price: parseInt(payment.transactions[0].amount.details.shipping,10),
                 total: parseInt(payment.transactions[0].amount.total,10),
                 currency: payment.transactions[0].amount.currency,
-                statue: payment.transactions[0].related_resources[0].sale.state,
+                payment_statue: payment.transactions[0].related_resources[0].sale.state,
                 last_edit: Date.now(),
                 paymentId: payment.id
             });
@@ -65,5 +70,46 @@ router.executepayment = (req, res) => {
     });
 };
 
+const kdniaoConfig = {
+    EBusinessID: config.KDNIAO_ID, //商户id
+    AppKey: config.KDNIAO_KEY //秘钥
+};
+
+router.getTransactionByCustomer = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    let opts = [
+        {path: 'product_id', model: Product, select: {detail_id: 1},
+         populate: {path: 'detail_id', model: Image, select: {path: 1}, options: {limit: 1}}}
+    ];
+
+    Transaction.find({customer_id: req.params.customer}).populate(opts).exec( function (err, transaction) {
+        if (err) {
+            res.json({message: 'Product not found', data: null});
+        } else {
+            res.json({data: transaction});
+
+        }
+    })
+};
+
+router.getTransactionBySeller = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    let opts = [
+        {path: 'product_id', model: Product, select: {detail_id: 1},
+            populate: {path: 'detail_id', model: Image, select: {path: 1}, options: {limit: 1}}}
+    ];
+
+    Transaction.find({seller_id: req.params.seller}).populate(opts).exec( function (err, transaction) {
+        // transaction.find({seller_id})
+        if (err) {
+            res.json({message: 'Product not found', data: null});
+        } else {
+            res.json({data: transaction});
+
+        }
+    })
+};
 
 module.exports = router;

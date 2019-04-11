@@ -2,7 +2,7 @@ let Product = require('../models/products');
 let Seller = require('../models/sellers');
 let Classification = require('../models/classification');
 let Catalogues = require('../models/catalogues');
-let Image = require('../models/images')
+let Image = require('../models/images');
 let express = require('express');
 let router = express.Router();
 
