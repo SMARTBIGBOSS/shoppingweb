@@ -52,7 +52,7 @@ describe('Classification Test', function (){
             chai.request(server).get('/admin/classification/type_active/Category').end(function (err, res) {
                 expect(res.body).to.be.a('object');
                 // expect(res.body).to.have.property('message').equal('Successfully Login');
-                expect(res.body.data[4]).to.have.property('subtitle','cate1');
+                expect(res.body.data[res.body.data.length-1]).to.have.property('subtitle','cate1');
                 done();
             });
         });
