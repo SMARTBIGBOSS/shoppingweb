@@ -1,4 +1,4 @@
-let Classification = require('../models/classification');
+let Classification = require('../models/classifications');
 let express = require('express');
 let router = express.Router();
 

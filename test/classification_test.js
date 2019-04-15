@@ -16,7 +16,7 @@ describe('Classification Test', function (){
     before(function (done) {
         delete require.cache[require.resolve('../bin/www')];
         delete require.cache[require.resolve('../models/customers')];
-        datastore = require('../models/classification');
+        datastore = require('../models/classifications');
         server = require('../bin/www');
         // token = jwt.sign({_id: datastore._id}, 'sellerJwtKey');
         try{

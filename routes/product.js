@@ -1,6 +1,6 @@
 let Product = require('../models/products');
 let Seller = require('../models/sellers');
-let Classification = require('../models/classification');
+let Classification = require('../models/classifications');
 let Catalogues = require('../models/catalogues');
 let Image = require('../models/images');
 let express = require('express');

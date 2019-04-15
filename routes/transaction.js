@@ -3,7 +3,6 @@ let Product = require('../models/products');
 let Image = require('../models/images');
 let paypal = require('paypal-rest-sdk');
 let config = require('../configuration/secertkey_config');
-let kdniao = require('kdniaosdk');
 let express = require('express');
 let router = express.Router();
 
@@ -68,11 +67,6 @@ router.executepayment = (req, res) => {
             });
         }
     });
-};
-
-const kdniaoConfig = {
-    EBusinessID: config.KDNIAO_ID, //商户id
-    AppKey: config.KDNIAO_KEY //秘钥
 };
 
 router.getTransactionByCustomer = (req, res) => {

@@ -32,6 +32,7 @@ const uploadImage = require('./routes/upload_image');
 const address = require('./routes/address');
 const classification = require('./routes/classification');
 const transaction = require('./routes/transaction');
+const shipping = require('./routes/shipping');
 const cookiekey = require('./configuration/secertkey_config');
 const auth = require('./middleware/auth');
 
@@ -54,6 +55,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors({
     credentials: true,
     origin: 'http://localhost:8080'
+    // origin: 'https://shoppingwebsite.firebaseapp.com'
 }));
 
 app.use('/', indexRouter);
@@ -114,12 +116,15 @@ app.put('/seller/:seller/editwithoutpass', auth.authSeller, seller.editAccountWi
 app.get('/seller/:seller/logo', auth.authSeller, uploadImage.getSellerLogo);
 //app.get('/seller/:seller/product/:id/body', auth.authSeller, uploadImage.loadProductBodyImg);
 app.get('/seller/product/:id/Img', uploadImage.getProductImage);
-app.get('/:seller/orders', transaction.getTransactionBySeller);
+app.get('/:seller/orderslist', transaction.getTransactionBySeller);
+app.get('/carriers', shipping.listCouriers);
+app.post('/order/goshipping', shipping.createATracking);
+
 // customer APIs
 app.post('/register/customer', customer.signUp);
 app.post('/login/customer', customer.signIn);
 app.get('/active/customer', customer.active);
-app.get('/customer/:customer', auth.authCustomer, customer.getOne);
+app.get('/customer/:customer', customer.getOne);
 app.put('/customer/:customer/uploadLogo', auth.authCustomer, uploadImage.customerLogo);
 app.put('/customer/:customer/edit', auth.authCustomer, customer.editAccount);
 app.put('/customer/:customer/editwithoutpass', auth.authCustomer, customer.editAccountWithoutPass);
@@ -131,6 +136,9 @@ app.get('/customer/:customer/addresses', address.getByCustomer);
 app.get('/customer/address/:id', address.getOne);
 app.post('/:customer/product/executepayment', auth.authCustomer, transaction.executepayment);
 app.get('/:customer/orders', transaction.getTransactionByCustomer);
+app.get('/:transactionId/shipping', shipping.getOneShipping);
+app.get('/:transactionId/realtimetracking', shipping.getARealTimeTracking);
+app.get('/:transactionId/tracking', shipping.getOneTracking);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

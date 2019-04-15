@@ -21,7 +21,7 @@ let TransactionSchema = new mongoose.Schema({
         total:{type: String, required: true},
         currency: {type: String, required: true},
         payment_statue: {type: String, required: true, default: 'uncompleted'},
-        // shipping_statue: {type: String, required: true},
+        shipping_statue: {type: String, required: true, default: 'pending'},
         last_edit: Date
     },
     { collection: 'transaction' });
