@@ -1,8 +1,18 @@
 let Shipping = require('../models/shippings');
 let Transaction = require('../models/transactions');
 let config = require('../configuration/secertkey_config');
+let NodeGeocoder = require('node-geocoder');
 let express = require('express');
 let router = express.Router();
+
+let geoOptions = {
+    provider: 'google',
+    httpAdapter: 'https',
+    apiKey: config.GOOGLEMAP_KEY,
+    formatter: null
+};
+
+let geocoder = NodeGeocoder(geoOptions);
 
 router.listCouriers = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
@@ -20,7 +30,7 @@ router.createATracking = (req, res) => {
     let postData = {
         "tracking_number": req.body.tracking_number,
         "carrier_code": req.body.carrier_code,
-        "lang": "en"
+        "lang": "cn"
     };
     let url = 'https://api.trackingmore.com/v2/trackings/post';
 
@@ -68,16 +78,64 @@ router.getOneTracking = (req, res) => {
             res.json({message: 'Shipping not found', data: null})
         } else {
             let postData = null;
-            let url = 'http://api.trackingmore.com/v2/trackings/'+shipping.carrier_code+'/'+shipping.tracking_number+'/en';
+            let url = 'http://api.trackingmore.com/v2/trackings/'+shipping.carrier_code+'/'+shipping.tracking_number+'/cn';
             sentRes(url,postData,"GET",function(tracking){
                 let tracks = JSON.parse(tracking);
-                // tracks = JSON.parse(tracks.data);
-                console.log(JSON.stringify(tracks.data.origin_info.trackinfo,null,5));
-                res.json({track: tracks.data});
+                // console.log(JSON.stringify(tracks.data.origin_info.trackinfo,null,5));
+                let addresses = tracks.data.origin_info.trackinfo;
+                let location = getLocation(addresses);
+                // console.log(location);
+                let newLocation = Array.from(new Set(location));
+                // console.log(newLocation);
+                geocoding(newLocation, function(result){
+                    // console.log(result);
+                    res.json({track: tracks.data, geo: result});
+                });
+
             });
+
+
         }
     });
 };
+
+function getLocation(addresses) {
+    let location =  [];
+    if (/.*[\u4e00-\u9fa5]+.*/.test(addresses[0].Details)) {
+        for (let i = addresses.length - 1; i > -1; i--) {
+            let l = addresses[i].StatusDescription.match(/[^【]+(?=】)/);
+            // console.log(l);
+            if (l){
+                location.push(l[0])
+            }
+        }
+        // console.log(location);
+        return location;
+    } else {
+        for (let i = addresses.length - 2; i > -1; i--) {
+                location.push(addresses[i].Details)
+        }
+        // console.log(location);
+        return location;
+    }
+}
+
+function geocoding(newLocation, callback) {
+    let count = newLocation.length;
+        let result = [];
+        for (let i = 0; i < newLocation.length; i++) {
+            geocoder.geocode(newLocation[i], function(err, res) {
+                if (res.length > 0){
+                    result.push({'index': i, 'location': { 'address': res[0].formattedAddress, 'lat': res[0].latitude, 'lng': res[0].longitude}});
+                    if (result.length == count && typeof callback == 'function') {
+                        callback(result);
+                    }
+                } else {
+                    count --;
+                }
+            });
+        }
+}
 
 router.getARealTimeTracking = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
@@ -90,7 +148,7 @@ router.getARealTimeTracking = (req, res) => {
             let postData = {
                 "tracking_number": shipping.tracking_number,
                 "carrier_code":  shipping.carrier_code,
-                "lang": "en"
+                "lang": "cn"
             };
             sentRes(url,postData,"POST",function(tracking){
                 let tracks = JSON.parse(tracking);
@@ -148,5 +206,6 @@ function sentRes(url,data,method,fn){
     req.write(content);
     req.end();
 };
+
 
 module.exports = router;
