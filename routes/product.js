@@ -189,10 +189,15 @@ router.getByRegion = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 
     let opts = [
-        {path: 'seller_id', model: Seller, select: {name: 1}}
+        {path: 'seller_id', model: Seller, select: {name: 1}},
+        {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
+        {path: 'class_region_id', model: Classification, select: {subtitle: 1}},
+        {path: 'catalogue_id', model: Catalogues, select: {name: 1}},
+        {path: 'body_id', model: Image, select: {path: 1}},
+        {path: 'detail_id', model: Image, select: {path: 1}},
     ];
 
-    Product.find({seller_id: req.params.seller, class_region_id: req.params.region}).populate(opts).exec(function(err, product){
+    Product.find({class_region_id: req.params.region}).populate(opts).exec(function(err, product){
         if (err){
             res.json({message: 'Region not found', data: null});
         } else {
@@ -235,6 +240,35 @@ router.getByCatalogue = (req, res) => {
             res.json({data: product});
         }
     });
+};
+
+router.getByCatalogueAndRegion = (req, res) => {
+
+    let opts = [
+        {path: 'body_id', model: Image, select: {path: 1}},
+        {path: 'detail_id', model: Image, select: {path: 1}},
+        {path: 'seller_id', model: Seller, select: {name: 1}},
+        {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
+        {path: 'class_region_id', model: Classification, select: {subtitle: 1}},
+        {path: 'catalogue_id', model: Catalogues, select: {name: 1}}
+    ];
+    if (req.params.region != 'null'){
+        Product.find({class_region_id: req.params.region ,class_type_id: req.params.catalogue}).populate(opts).exec(function(err, product){
+            if (err){
+                res.json({message: 'Product not found', data: null});
+            } else {
+                res.json({data: product});
+            }
+        });
+    } else{
+        Product.find({class_type_id: req.params.catalogue}).populate(opts).exec(function(err, product){
+            if (!product){
+                res.json({message: 'Product not found', data: null});
+            } else {
+                res.json({message: 'Found products', data: product});
+            }
+        });
+    }
 };
 
 router.getOne = (req, res) => {

@@ -117,6 +117,18 @@ router.getActiveClassificationByTitle = (req, res) => {
     });
 };
 
+router.getClassificationBySubtitle = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+
+    Classification.find({subtitle: req.params.subtitle}, function(err, classification){
+        if (err){
+            res.json({message: 'Classification not found', data: null});
+        } else {
+            res.json({data: classification});
+        }
+    });
+};
+
 router.getAClassification = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 

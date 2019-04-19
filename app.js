@@ -83,8 +83,7 @@ app.put('/admin/:admin/editwithoutpass', auth.authAdmin, admin.editWithoutPasswo
 app.get('/admin/:admin/classification/type/:type', auth.authAdmin, classification.getClassificationByType);
 app.get('/admin/classification/type_active/:type', classification.getActiveClassificationByType);
 app.get('/admin/:admin/classification/title/:title', auth.authAdmin, classification.getClassificationByTitle);
-app.get('/admin/classification/title_active/:title', classification.getActiveClassificationByTitle);
-// app.get('classification/:id', classification.getAClassification);
+app.get('classification/subtitle/:subtitle', classification.getClassificationBySubtitle);
 app.post('/admin/:admin/classification', auth.authAdmin, classification.add);
 app.put('/admin/:admin/classification/:id', auth.authAdmin, classification.edit);
 app.delete('/admin/:admin/classification/:id', auth.authAdmin, classification.remove);
@@ -104,7 +103,6 @@ app.post('/:seller/product/add', auth.authSeller, product.add);
 app.put('/:seller/product/edit/:id', auth.authSeller, product.edit);
 app.delete('/product/delete/:id', product.remove);
 // app.get('/:seller/product/type/:type', auth.authSeller, product.getByType);
-//app.get('/:seller/product/region/:region', product.getByRegion);
 app.get('/:seller/product/:catalogue', auth.authSeller, product.getByCatalogue);
 app.get('/product/:id', product.getOne);
 app.get('/products', product.getAllProducts);
@@ -139,6 +137,10 @@ app.get('/:customer/orders', transaction.getTransactionByCustomer);
 app.get('/:transactionId/shipping', shipping.getOneShipping);
 app.get('/:transactionId/realtimetracking', shipping.getARealTimeTracking);
 app.get('/:transactionId/tracking', shipping.getOneTracking);
+app.get('/product/region/:region', product.getByRegion);
+app.get('/product/subtitle/:subtitle', classification.getClassificationBySubtitle);
+app.get('/product/:region/:catalogue', product.getByCatalogueAndRegion);
+app.get('/classification/title_active/:title', classification.getActiveClassificationByTitle);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
