@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
-var cors = require('cors')
+// var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -52,24 +52,27 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser(cookiekey.COOKIE_SECRET));
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:8080'
-    // origin: 'https://shoppingwebsite.firebaseapp.com'
-}));
+// app.use(cors({
+//     credentials: true,
+//     origin: 'http://localhost:8080'
+//     // origin: 'https://shoppingwebsite.firebaseapp.com'
+// }));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use("*", function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
-    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With, token");
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("Access-Control-Expose-Headers", "token");
-    if (req.method === 'OPTIONS') {
-        res.send(200)
-    } else {
-        next()
+    if (req.headers.origin == 'http://localhost:8080' || req.headers.origin == 'https://shoppingwebsite.firebaseapp.com') {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+        res.header('Access-Control-Allow-Credentials', true);
+        res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With, token");
+        res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+        res.header("Access-Control-Expose-Headers", "token");
+        if (req.method === 'OPTIONS') {
+            res.send(200)
+        } else {
+            next()
+        }
     }
 });
 
