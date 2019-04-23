@@ -62,8 +62,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use("*", function (req, res, next) {
-    if (req.headers.origin == 'http://localhost:8080' || req.headers.origin == 'https://shoppingwebsite.firebaseapp.com') {
-        res.header('Access-Control-Allow-Origin', req.headers.origin);
+    // if (req.headers.origin == 'http://localhost:8080' || req.headers.origin == 'https://shoppingwebsite.firebaseapp.com') {
+    //     res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
         res.header('Access-Control-Allow-Credentials', true);
         res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With, token");
         res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
@@ -73,7 +74,7 @@ app.use("*", function (req, res, next) {
         } else {
             next()
         }
-    }
+    // }
 });
 
 // admin APIs
@@ -144,6 +145,7 @@ app.get('/product/region/:region', product.getByRegion);
 app.get('/product/subtitle/:subtitle', classification.getClassificationBySubtitle);
 app.get('/product/:region/:catalogue', product.getByCatalogueAndRegion);
 app.get('/classification/title_active/:title', classification.getActiveClassificationByTitle);
+app.get('/products/search', product.getBySearch);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

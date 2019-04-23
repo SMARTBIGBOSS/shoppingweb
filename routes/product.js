@@ -185,6 +185,31 @@ router.remove = (req, res) => {
     });
 };
 
+function escapeRegex(str){
+    return str.replace(/[-[\]{}()*+?.,\\^$|#\s]/g,"\\$&");
+};
+
+router.getBySearch = (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    //console.log(req.query.name);
+    if(req.query.name){
+        const regex = new RegExp(escapeRegex(req.query.name), 'gi');
+        Product.find({name: regex}, function (err, products) {
+            if(!products)
+                res.send('Not found!');
+            else
+                res.send(JSON.stringify(products,null,5));
+        });
+    }else{
+        Product.find(function (err, products) {
+            if(!products)
+                res.send('No product');
+            else
+                res.send(JSON.stringify(products,null,5));
+        });
+    }
+};
+
 router.getByRegion = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
 

@@ -120,20 +120,25 @@ function getLocation(addresses) {
 function geocoding(newLocation, callback) {
     let count = newLocation.length;
     let result = [];
-    // console.log(newLocation);
+    console.log(newLocation);
     for (let i = 0; i < newLocation.length; i++) {
         let couCode = newLocation[i].split(',');
         couCode = couCode[couCode.length-1];
-        // console.log(couCode);
+        console.log(couCode);
         geocoder.geocode(newLocation[i], function(err, res) {
-            // console.log(res);
-            if (/.*[\u4e00-\u9fa5]+.*/.test(couCode) || res[0].countryCode == couCode){
-                result.push({'index': i, 'location': { 'address': res[0].formattedAddress, 'lat': res[0].latitude, 'lng': res[0].longitude}});
-                if (result.length == count && typeof callback == 'function') {
-                    callback(result);
+            console.log(res);
+            if (res.length > 0){
+                if (/.*[\u4e00-\u9fa5]+.*/.test(couCode) || res[0].countryCode == couCode){
+                    result.push({'index': i, 'location': { 'address': res[0].formattedAddress, 'lat': res[0].latitude, 'lng': res[0].longitude}});
+                    if (result.length == count && typeof callback == 'function') {
+                        callback(result);
+                    }
+                } else {
+                    count --;
                 }
             } else {
                 count --;
+                i++;
             }
         });
     }
