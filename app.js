@@ -62,9 +62,9 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use("*", function (req, res, next) {
-    // if (req.headers.origin == 'http://localhost:8080' || req.headers.origin == 'https://shoppingwebsite.firebaseapp.com') {
-    //     res.header('Access-Control-Allow-Origin', req.headers.origin);
-    res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
+    if (req.headers.origin == 'http://localhost:8080' || req.headers.origin == 'https://shoppingwebsite.firebaseapp.com') {
+        res.header('Access-Control-Allow-Origin', req.headers.origin);
+    // res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
         res.header('Access-Control-Allow-Credentials', true);
         res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With, token");
         res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
@@ -74,7 +74,7 @@ app.use("*", function (req, res, next) {
         } else {
             next()
         }
-    // }
+    }
 });
 
 // admin APIs

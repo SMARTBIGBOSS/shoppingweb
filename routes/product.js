@@ -192,16 +192,25 @@ function escapeRegex(str){
 router.getBySearch = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
     //console.log(req.query.name);
+    let opts = [
+        {path: 'seller_id', model: Seller, select: {name: 1}},
+        {path: 'class_type_id', model: Classification, select: {subtitle: 1}},
+        {path: 'class_region_id', model: Classification, select: {subtitle: 1}},
+        {path: 'catalogue_id', model: Catalogues, select: {name: 1}},
+        {path: 'body_id', model: Image, select: {path: 1}},
+        {path: 'detail_id', model: Image, select: {path: 1}},
+    ];
+
     if(req.query.name){
         const regex = new RegExp(escapeRegex(req.query.name), 'gi');
-        Product.find({name: regex}, function (err, products) {
+        Product.find({name: regex, isShow: true}).populate(opts).exec(function (err, products) {
             if(!products)
                 res.send('Not found!');
             else
                 res.send(JSON.stringify(products,null,5));
         });
     }else{
-        Product.find(function (err, products) {
+        Product.find({isShow: true}).populate(opts).exec(function (err, products) {
             if(!products)
                 res.send('No product');
             else
