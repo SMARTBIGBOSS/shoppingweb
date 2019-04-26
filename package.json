@@ -8,7 +8,9 @@
   },
   "scripts": {
     "start": "npm-run-all test server build",
-    "test": "cross-env NODE_ENV=test mocha --require babel-core/register test --timeout 5000 --exit",
+    "test": "npm-run-all test_classification test_customer",
+    "test_customer": "cross-env NODE_ENV=test mocha --require babel-core/register test/customer_test.js --exit",
+    "test_classification": "cross-env NODE_ENV=test mocha --require babel-core/register test/classification_test.js --exit",
     "server": "cross-env NODE_ENV=dev node lib/bin/www",
     "publish-coverage": "nyc report --reporter=text-lcov | coveralls",
     "coverage": "cross-env NODE_ENV=test nyc mocha test --timeout 5000 --exit",

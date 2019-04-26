@@ -24,21 +24,21 @@ router.signUp = (req, res) => {
     seller.username = req.body.username;
     seller.password = bcrypt.hashSync(req.body.password);
     seller.name = req.body.name;
-    seller.description = req.body.description;
+    // seller.description = req.body.description;
     seller.register_date = Date.now();
     seller.active_code = code;
     // console.log(req.body.password+" " +req.body.password.length)
 
     if(seller.username == null || seller.password == null || seller.name == null) {
-        res.json({ errmsg : 'Username, Password and Name must be Required!' });
+        res.json({ message : 'Username, Password and Name must be Required!', data: null});
     }
     else if (!checkEmail.test(seller.username)){
-        res.json({ errmsg : 'Email address format error!' });
+        res.json({ message : 'Email address format error!', data: null});
     }
     else if((8 > req.body.password.length) || (req.body.password.length > 16)) {
-        res.json({ errmsg : 'Password must be Between 8 Characters and 16 Characters!' });
+        res.json({ message : 'Password must be Between 8 Characters and 16 Characters!', data: null});
     } else if(!(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W])[a-zA-Z\d\W?$]{8,16}/.test(req.body.password))){
-        res.json({ errmsg: 'Password must has Number, Lowercase Letter, Capital Letter and Special Character!'});
+        res.json({ message: 'Password must has Number, Lowercase Letter, Capital Letter and Special Character!', data: null});
         // }
         // else if(!(/\d/.test(req.body.password))) {
         //     res.json({ errmsg: 'Password must has number!'});
@@ -49,22 +49,23 @@ router.signUp = (req, res) => {
         // } else if(!(/\W/.test(req.body.password))) {
         //     res.json({ errmsg: 'Password must has Spacial Characters!'});
     }
-    else if(req.body.description.length > 200){
-        res.json({ errmsg : 'Description must be less than 200 letters' });
-    } else if(seller.name.length > 30){
-        res.json({ errmsg : 'Name must be less than 30 letters' });
+    // else if(req.body.description.length > 200){
+    //     res.json({ errmsg : 'Description must be less than 200 letters' });
+    // }
+    else if(seller.name.length > 30){
+        res.json({ message : 'Name must be less than 30 letters', data: null});
     }else{
         Seller.findOne({ username: req.body.username }, function (err, result) {
             if(result) {
-                res.json({ errmsg : 'Email already exists!' });
+                res.json({ message : 'Email already exists!', data: null});
             } else {
                 Seller.findOne({ name: req.body.name }, function (err, user) {
                     if (user) {
-                        res.json({ errmsg : 'Name already exists!' });
+                        res.json({ message : 'Name already exists!', data: null});
                     } else {
                         seller.save(function (err) {
                             if(err) {
-                                res.json({ errmsg: 'Seller Sign Up Unsuccessfully!',err : err});
+                                res.json({ message: 'Seller Sign Up Unsuccessfully!',err : err, data: null});
                                 return res.status(500).send();
                             } else {
                                 mailer.send(seller.username, 'seller', seller.active_code);
@@ -114,7 +115,7 @@ router.signIn = (req, res) => {
         if(!seller) {
             res.json({ message: 'User Not Exists!', data: null});
         } else if(seller.active == false) {
-            res.json({ message: 'User inactive!'})
+            res.json({ message: 'User inactive!', data: null})
         } else{
             if(bcrypt.compareSync(req.body.password, seller.password)){
                 // let token = signToken(seller);

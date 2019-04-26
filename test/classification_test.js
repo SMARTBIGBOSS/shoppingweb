@@ -8,6 +8,14 @@ let expect = chai.expect;
 chai.use( things);
 chai.use(chaiHttp);
 
+let mongodbUri = 'mongodb://shoppingdb:shoppingdb100@ds125331.mlab.com:25331/shoppingdb';
+
+// mongoose.connect(mongodbUri,{useNewUrlParser:true},function(err){
+//     if(err)
+//         console.log('Connection Error:' + err);
+//     else
+//         console.log('Connection to database success!');
+// });
 let db = mongoose.connection;
 let server = null ; // CHANGED
 let datastore = null ; // CHANGED
@@ -38,9 +46,12 @@ describe('Classification Test', function (){
         }
     });
     after(function(done){
+        delete require.cache[require.resolve('../bin/www')];
+        delete require.cache[require.resolve('../models/classifications')];
         try{
             db.collection('classification').deleteMany({'admin_id': { $in: ['1','2'] }});
             console.log('Classifications delete success.');
+            mongoose.connection.close();
             done();
         }catch (e) {
             console.log(e);
@@ -53,8 +64,8 @@ describe('Classification Test', function (){
                 expect(res.body).to.be.a('object');
                 // expect(res.body).to.have.property('message').equal('Successfully Login');
                 expect(res.body.data[res.body.data.length-1]).to.have.property('subtitle','cate1');
-                done();
             });
+            done();
         });
     });
 
@@ -64,8 +75,8 @@ describe('Classification Test', function (){
                 expect(res.body).to.be.a('object');
                 expect(res.body.data.length).to.equal(1);
                 expect(res.body.data[0]).to.have.property('title','clas2');
-                done();
             });
+            done();
         });
     });
 });

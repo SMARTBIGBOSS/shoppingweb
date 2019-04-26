@@ -70,7 +70,7 @@ app.use("*", function (req, res, next) {
         res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
         res.header("Access-Control-Expose-Headers", "token");
         if (req.method === 'OPTIONS') {
-            res.send(200)
+            res.sendStatus(200)
         } else {
             next()
         }
@@ -78,7 +78,7 @@ app.use("*", function (req, res, next) {
 });
 
 // admin APIs
-app.post('/register/admin', admin.signUp);
+// app.post('/register/admin', admin.signUp);
 app.post('/login/admin', admin.signIn);
 app.post('/logout/admin', admin.signout);
 app.get('/admin/:admin', admin.findOne);

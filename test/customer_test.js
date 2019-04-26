@@ -9,7 +9,7 @@ let expect = chai.expect;
 chai.use( things);
 chai.use(chaiHttp);
 // let mongodbUri = 'mongodb://shoppingdb:shoppingdb100@ds125331.mlab.com:25331/shoppingdb';
-//
+
 // mongoose.connect(mongodbUri,{useNewUrlParser:true},function(err){
 //     if(err)
 //         console.log('Connection Error:' + err);
@@ -24,7 +24,7 @@ let password = bcrypt.hashSync(567);
 describe('Customer Test', function (){
     before(function (done) {
         delete require.cache[require.resolve('../bin/www')];
-        delete require.cache[require.resolve('../models/classification')];
+        delete require.cache[require.resolve('../models/classifications')];
         datastore = require('../models/customers');
         server = require('../bin/www');
         // token = jwt.sign({_id: datastore._id}, 'sellerJwtKey');
@@ -47,9 +47,12 @@ describe('Customer Test', function (){
         }
     });
     after(function(done){
+        delete require.cache[require.resolve('../bin/www')];
+        delete require.cache[require.resolve('../models/customers')];
         try{
             db.collection('customer').deleteMany({'name': { $in: ['testc1','testc2'] }});
             console.log('Customers delete success.');
+            mongoose.connection.close();
             done();
         }catch (e) {
             console.log(e);
@@ -63,8 +66,8 @@ describe('Customer Test', function (){
                 expect(res.body).to.be.a('object');
                 expect(res.body).to.have.property('message').equal('Successfully Login');
                 expect(res.body.data).to.have.property('name','testc1');
-                done();
             });
+            done();
         });
         it('should return a Not Exist and null data', function (done) {
             let customer = {'username': 'c0@test.com', 'password': '567'};
@@ -72,8 +75,8 @@ describe('Customer Test', function (){
                 expect(res.body).to.be.a('object');
                 expect(res.body).to.have.property('message').equal('User Not Exists!');
                 expect(res.body.data).to.equal(null);
-                done();
             });
+            done();
         });
         it('should return an inactive message and null data', function (done) {
             let customer = {'username': 'c2@test.com', 'password': '567'};
@@ -81,8 +84,8 @@ describe('Customer Test', function (){
                 expect(res.body).to.be.a('object');
                 expect(res.body).to.have.property('message').equal('User inactive!');
                 expect(res.body.data).to.equal(null);
-                done();
             });
+            done();
         });
         it('should return an match failed message and null data', function (done) {
             let customer = {'username': 'c1@test.com', 'password': '5'};
@@ -90,8 +93,8 @@ describe('Customer Test', function (){
                 expect(res.body).to.be.a('object');
                 expect(res.body).to.have.property('message').equal('Username or Password Incorrect!');
                 expect(res.body.data).to.equal(null);
-                done();
             });
+            done();
         });
     });
 });

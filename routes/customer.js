@@ -79,17 +79,17 @@ router.signUp = (req, res) => {
 
 router.active = (req, res) => {
     res.setHeader('Content-Type', 'application/json');
-
+console.log(req.query.code);
     Customer.findOne({active_code: req.query.code}, function (err, customer) {
         if (!customer) {
-            res.json({ message: 'Activation failed'});
+            res.json({ message: 'Activation failed', data: null});
         } else if ((Date.now() - customer.register_date) > (1000*60*30)){
             Customer.deleteOne({username: customer.username});
-            res.json({ message: 'Link expired! Please sign up again'});
+            res.json({ message: 'Link expired! Please sign up again', data: null});
         } else {
             Customer.updateOne({ username: customer.username}, {active: true}, function(err, newCustomer){
                 if (err){
-                    res.json({ message: err});
+                    res.json({ message: err, data: null});
                 } else {
                     res.json({ message: 'Successful activation', data: newCustomer});
                 }
