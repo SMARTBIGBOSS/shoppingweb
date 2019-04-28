@@ -231,7 +231,7 @@ router.getByRegion = (req, res) => {
         {path: 'detail_id', model: Image, select: {path: 1}},
     ];
 
-    Product.find({class_region_id: req.params.region}).populate(opts).exec(function(err, product){
+    Product.find({class_region_id: req.params.region, isShow: true}).populate(opts).exec(function(err, product){
         if (err){
             res.json({message: 'Region not found', data: null});
         } else {
@@ -287,7 +287,7 @@ router.getByCatalogueAndRegion = (req, res) => {
         {path: 'catalogue_id', model: Catalogues, select: {name: 1}}
     ];
     if (req.params.region != 'null'){
-        Product.find({class_region_id: req.params.region ,class_type_id: req.params.catalogue}).populate(opts).exec(function(err, product){
+        Product.find({class_region_id: req.params.region ,class_type_id: req.params.catalogue, isShow: true}).populate(opts).exec(function(err, product){
             if (err){
                 res.json({message: 'Product not found', data: null});
             } else {

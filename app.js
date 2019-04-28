@@ -62,7 +62,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
 app.use("*", function (req, res, next) {
-    if (req.headers.origin == 'http://localhost:8080' || req.headers.origin == 'https://shoppingwebsite.firebaseapp.com') {
+    if (req.headers.origin == 'http://localhost:8080' || req.headers.origin == 'https://shoppingwebsite.firebaseapp.com'){
         res.header('Access-Control-Allow-Origin', req.headers.origin);
     // res.header('Access-Control-Allow-Origin', 'http://localhost:8080');
         res.header('Access-Control-Allow-Credentials', true);
